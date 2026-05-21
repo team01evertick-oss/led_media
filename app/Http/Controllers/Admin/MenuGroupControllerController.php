@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class MenuGroupControllerController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -3,77 +3,64 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Insight;
-use App\Services\SeoService;
+use App\Models\Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class InsightController extends Controller
 {
-    public function __construct(private SeoService $seoService) {}
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $insights = Insight::with('featuredImage')->latest()->paginate(15);
-        return view('backend.cms.insights.index', compact('insights'));
+        //
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        $model = new Insight(); $seo = null;
-        return view('backend.cms.insights.form', compact('model', 'seo'));
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title'             => 'required|string|max:200',
-            'category'          => 'nullable|string|max:100',
-            'excerpt'           => 'nullable|string',
-            'content'           => 'nullable|string',
-            'featured_image_id' => 'nullable|exists:media,id',
-            'is_featured'       => 'boolean',
-            'status'            => 'required|in:published,draft',
-            'order'             => 'integer',
-            'published_at'      => 'nullable|date',
-        ]);
-        $data['slug']         = Str::slug($data['title']) . '-' . time();
-        $data['published_at'] = $data['status'] === 'published' && empty($data['published_at']) ? now() : ($data['published_at'] ?? null);
-
-        $insight = Insight::create($data);
-        $this->seoService->saveSeo($insight, ['meta_title' => $request->input('seo_title'), 'meta_description' => $request->input('seo_description'), 'robots' => 'index,follow']);
-
-        return redirect()->route('admin.insights.index')->with('success', 'Insight created.');
+        //
     }
 
-    public function edit(Insight $insight)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Page $page)
     {
-        $seo = $insight->seo; $model = $insight;
-        return view('backend.cms.insights.form', compact('insight', 'model', 'seo'));
+        //
     }
 
-    public function update(Request $request, Insight $insight)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Page $page)
     {
-        $data = $request->validate([
-            'title'             => 'required|string|max:200',
-            'category'          => 'nullable|string|max:100',
-            'excerpt'           => 'nullable|string',
-            'content'           => 'nullable|string',
-            'featured_image_id' => 'nullable|exists:media,id',
-            'is_featured'       => 'boolean',
-            'status'            => 'required|in:published,draft',
-            'order'             => 'integer',
-            'published_at'      => 'nullable|date',
-        ]);
-        $insight->update($data);
-        $this->seoService->saveSeo($insight, ['meta_title' => $request->input('seo_title'), 'meta_description' => $request->input('seo_description'), 'robots' => 'index,follow']);
-
-        return redirect()->route('admin.insights.index')->with('success', 'Insight updated.');
+        //
     }
 
-    public function destroy(Insight $insight)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Page $page)
     {
-        $insight->seo()->delete(); $insight->delete();
-        return redirect()->route('admin.insights.index')->with('success', 'Insight deleted.');
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Page $page)
+    {
+        //
     }
 }
