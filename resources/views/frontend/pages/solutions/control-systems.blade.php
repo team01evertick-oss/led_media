@@ -2,29 +2,30 @@
 
 @section('title', 'Indoor')
 
- {{-- HERO SECTION --}}
-    @include('frontend.layouts.hero')
-       {{-- HERO SECTION --}}
-    @include('frontend.pages.home.about')
 @section('content')
 
-{{-- benefit --}}
-@include('frontend.pages.solutions.components.benefit')
+    {{-- HERO SECTION --}}
+    @include('frontend.layouts.hero')
 
+    {{-- ABOUT SECTION --}}
+    @include('frontend.pages.home.about')
 
-{{-- TECHNICAL FEATURES --}}
-@include('frontend.pages.solutions.components.technical-features')
+    {{-- BENEFIT --}}
+    @include('frontend.pages.solutions.components.benefit')
 
+    {{-- WHY US --}}
+    @include('frontend.pages.solutions.components.why-us')
 
-{{-- FEATURED PROJECTS --}}
-@include('frontend.pages.solutions.components.featured')
+    {{-- TECHNICAL FEATURES --}}
+    @include('frontend.pages.solutions.components.technical-features')
 
-{{-- FAQ --}}
-@include('frontend.pages.solutions.components.faq')
+    {{-- FEATURED PROJECTS --}}
+    @include('frontend.pages.solutions.components.featured')
 
-{{-- FAQ --}}
-@include('frontend.pages.solutions.components.partner')
+    {{-- FAQ --}}
+    @include('frontend.pages.solutions.components.faq')
 
-
+    {{-- PARTNER --}}
+    @include('frontend.pages.solutions.components.partner')
 
 @endsection

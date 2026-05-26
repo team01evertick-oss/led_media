@@ -12,113 +12,59 @@
         </div>
 
         <!-- GRID -->
+     @if(isset($solution) && $solution->technicalFeatures->isNotEmpty())
+
+<section class="technical-features-section">
+
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="features-title">
+            <h2>Technical Features</h2>
+        </div>
+
+        <!-- GRID -->
         <div class="features-grid">
 
-            <!-- CARD -->
+    @foreach($solution->technicalFeatures as $feature)
+
+        <a href="{{ route('card.detail') }}" class="feature-link">
+
             <div class="feature-card">
 
                 <div class="feature-image">
-
-                    <img src="images/feature-1.jpg"
-                         alt="Feature">
-
+                    <img
+                        src="{{ asset('storage/image/feature-' . $loop->iteration . '.jpg') }}"
+                        alt="{{ $feature->title }}">
                 </div>
 
                 <div class="feature-content">
 
-                    <p>
-                        Display controller integration
-                    </p>
+                    <span class="feature-number">
+                        {{ $feature->feature_number }}
+                    </span>
+
+                    <p>{{ $feature->title }}</p>
+
+                    <div class="view-more">
+                        View Detail →
+                    </div>
 
                 </div>
 
             </div>
 
-            <!-- CARD -->
-            <div class="feature-card">
+        </a>
 
-                <div class="feature-image">
+    @endforeach
 
-                    <img src="images/feature-2.jpg"
-                         alt="Feature">
-
-                </div>
-
-                <div class="feature-content">
-
-                    <p>
-                        Remote management systems
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- CARD -->
-            <div class="feature-card">
-
-                <div class="feature-image">
-
-                    <img src="images/feature-3.jpg"
-                         alt="Feature">
-
-                </div>
-
-                <div class="feature-content">
-
-                    <p>
-                        Multimedia compatibility
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- CARD -->
-            <div class="feature-card">
-
-                <div class="feature-image">
-
-                    <img src="images/feature-4.jpg"
-                         alt="Feature">
-
-                </div>
-
-                <div class="feature-content">
-
-                    <p>
-                        Network-based control systems
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- CARD -->
-            <div class="feature-card">
-
-                <div class="feature-image">
-
-                    <img src="images/feature-5.jpg"
-                         alt="Feature">
-
-                </div>
-
-                <div class="feature-content">
-
-                    <p>
-                        System monitoring support
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
+</div>
 
     </div>
 
 </section>
+
+@endif
 <style>
     /* =========================================================
    TECHNICAL FEATURES SECTION

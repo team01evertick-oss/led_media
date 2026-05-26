@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SolutionFaq extends Model
+class SolutionBenefit extends Model
 {
     protected $fillable = [
 
         'solution_id',
-        'question',
-        'answer'
+        'title'
     ];
 
     /*
@@ -23,8 +22,4 @@ class SolutionFaq extends Model
     {
         return $this->belongsTo(Solution::class);
     }
-    public function partners()
-{
-    return $this->hasMany(Partner::class);
-}
 }

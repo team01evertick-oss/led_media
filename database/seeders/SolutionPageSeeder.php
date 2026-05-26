@@ -3,25 +3,29 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\SolutionPage;
-use App\Models\SolutionFeature;
+
+use App\Models\Solution;
+use App\Models\SolutionBenefit;
 use App\Models\SolutionFaq;
+use App\Models\SolutionUse;
+use App\Models\TechnicalFeature;
 
 class SolutionPageSeeder extends Seeder
 {
     public function run(): void
     {
+
         /*
         |--------------------------------------------------------------------------
         | OUTDOOR LED BILLBOARDS
         |--------------------------------------------------------------------------
         */
 
-        $outdoor = SolutionPage::create([
-
-            'page_key' => 'outdoor-billboards',
+        $outdoor = Solution::create([
 
             'title' => 'Outdoor LED Billboards',
+
+            'slug' => 'outdoor-billboards',
 
             'description' =>
                 'Outdoor LED billboards are high-brightness digital display systems designed to deliver clear visuals in all weather and lighting conditions. These solutions are commonly installed on commercial buildings, roadside structures, shopping centers, banks, and public spaces for advertising and brand communication.',
@@ -29,17 +33,12 @@ class SolutionPageSeeder extends Seeder
             'why_led_media' =>
                 'LED Media provides complete billboard solutions including consultation, structural planning, LED supply, installation, integration, and long-term maintenance support. Our experience includes commercial billboard projects for leading banks and businesses across Cambodia.',
 
-            'cta_title' =>
-                'Ready to install your outdoor LED billboard project?',
+            'image' => 'solutions/outdoor-billboards.jpg',
 
-            'button_text' => 'Request Quotation',
-            'button_link' => '/contact',
-
-            'secondary_button_text' => 'Book Site Survey',
-            'secondary_button_link' => '/contact',
+            'status' => true,
         ]);
 
-        $this->insertFeatures($outdoor->id, 'usage', [
+        $this->insertUses($outdoor->id, [
 
             'Outdoor LED Billboards',
             'Indoor Commercial LED Displays',
@@ -51,7 +50,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($outdoor->id, 'benefits', [
+        $this->insertBenefits($outdoor->id, [
 
             'High visibility day and night',
             'Weather-resistant performance',
@@ -61,7 +60,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($outdoor->id, 'technical', [
+        $this->insertTechnicalFeatures($outdoor->id, [
 
             'High-brightness outdoor LED panels',
             'Waterproof and durable systems',
@@ -73,9 +72,29 @@ class SolutionPageSeeder extends Seeder
 
         $this->insertFaqs($outdoor->id, [
 
-            'Can outdoor LED screens operate during rain?',
-            'Do you provide structural installation?',
-            'Can content be updated remotely?',
+            [
+                'question' =>
+                    'Can outdoor LED screens operate during rain?',
+
+                'answer' =>
+                    'Yes, outdoor LED displays are waterproof and designed for all-weather operation.',
+            ],
+
+            [
+                'question' =>
+                    'Do you provide structural installation?',
+
+                'answer' =>
+                    'Yes, we provide complete structural fabrication and installation services.',
+            ],
+
+            [
+                'question' =>
+                    'Can content be updated remotely?',
+
+                'answer' =>
+                    'Yes, content can be managed remotely through compatible control systems.',
+            ],
 
         ]);
 
@@ -87,11 +106,11 @@ class SolutionPageSeeder extends Seeder
         |--------------------------------------------------------------------------
         */
 
-        $indoor = SolutionPage::create([
-
-            'page_key' => 'indoor-commercial',
+        $indoor = Solution::create([
 
             'title' => 'Indoor Commercial LED Displays',
+
+            'slug' => 'indoor-commercial',
 
             'description' =>
                 'Professional indoor LED solutions for commercial environments including retail stores, shopping malls, offices, and meeting spaces.',
@@ -99,17 +118,12 @@ class SolutionPageSeeder extends Seeder
             'why_led_media' =>
                 'LED Media delivers customized indoor LED solutions tailored to commercial requirements, including installation, calibration, technical support, and maintenance services.',
 
-            'cta_title' =>
-                'Upgrade your commercial space with professional LED display solutions.',
+            'image' => 'solutions/indoor-commercial.jpg',
 
-            'button_text' => 'Request Consultation',
-            'button_link' => '/contact',
-
-            'secondary_button_text' => 'Talk to Our Team',
-            'secondary_button_link' => '/contact',
+            'status' => true,
         ]);
 
-        $this->insertFeatures($indoor->id, 'usage', [
+        $this->insertUses($indoor->id, [
 
             'Shopping malls',
             'Retail stores',
@@ -120,7 +134,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($indoor->id, 'benefits', [
+        $this->insertBenefits($indoor->id, [
 
             'Sharp and vibrant display quality',
             'Seamless large-format visuals',
@@ -130,7 +144,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($indoor->id, 'technical', [
+        $this->insertTechnicalFeatures($indoor->id, [
 
             'High-resolution LED panels',
             'Flexible display sizes',
@@ -142,9 +156,29 @@ class SolutionPageSeeder extends Seeder
 
         $this->insertFaqs($indoor->id, [
 
-            'Are indoor LED displays suitable for retail stores?',
-            'Can displays be customized to different sizes?',
-            'Do you provide maintenance support?',
+            [
+                'question' =>
+                    'Are indoor LED displays suitable for retail stores?',
+
+                'answer' =>
+                    'Yes, indoor LED displays are ideal for retail and commercial environments.',
+            ],
+
+            [
+                'question' =>
+                    'Can displays be customized to different sizes?',
+
+                'answer' =>
+                    'Yes, displays can be customized based on project requirements.',
+            ],
+
+            [
+                'question' =>
+                    'Do you provide maintenance support?',
+
+                'answer' =>
+                    'Yes, we provide long-term maintenance and technical support.',
+            ],
 
         ]);
 
@@ -156,11 +190,11 @@ class SolutionPageSeeder extends Seeder
         |--------------------------------------------------------------------------
         */
 
-        $finePixel = SolutionPage::create([
-
-            'page_key' => 'fine-pixel',
+        $finePixel = Solution::create([
 
             'title' => 'Fine Pixel & Meeting Room Displays',
+
+            'slug' => 'fine-pixel',
 
             'description' =>
                 'Premium fine pixel LED displays designed for meeting rooms, command centers, conference halls, and professional presentation environments.',
@@ -168,17 +202,12 @@ class SolutionPageSeeder extends Seeder
             'why_led_media' =>
                 'We provide premium fine pixel display solutions with professional installation, system integration, and technical optimization tailored for business environments.',
 
-            'cta_title' =>
-                'Create a modern and impactful meeting environment with fine pixel LED technology.',
+            'image' => 'solutions/fine-pixel.jpg',
 
-            'button_text' => 'Request Consultation',
-            'button_link' => '/contact',
-
-            'secondary_button_text' => 'Talk to Our Team',
-            'secondary_button_link' => '/contact',
+            'status' => true,
         ]);
 
-        $this->insertFeatures($finePixel->id, 'usage', [
+        $this->insertUses($finePixel->id, [
 
             'Corporate meeting rooms',
             'Government institutions',
@@ -188,7 +217,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($finePixel->id, 'benefits', [
+        $this->insertBenefits($finePixel->id, [
 
             'Ultra-high image clarity',
             'Seamless viewing experience',
@@ -198,7 +227,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($finePixel->id, 'technical', [
+        $this->insertTechnicalFeatures($finePixel->id, [
 
             'Fine pixel pitch technology',
             'High refresh rate display',
@@ -210,9 +239,29 @@ class SolutionPageSeeder extends Seeder
 
         $this->insertFaqs($finePixel->id, [
 
-            'What is fine pixel LED technology?',
-            'Is it suitable for presentations and conferences?',
-            'Can it integrate with existing AV systems?',
+            [
+                'question' =>
+                    'What is fine pixel LED technology?',
+
+                'answer' =>
+                    'Fine pixel LED provides ultra-high resolution and close viewing clarity.',
+            ],
+
+            [
+                'question' =>
+                    'Is it suitable for presentations and conferences?',
+
+                'answer' =>
+                    'Yes, it is ideal for meeting rooms and conference environments.',
+            ],
+
+            [
+                'question' =>
+                    'Can it integrate with existing AV systems?',
+
+                'answer' =>
+                    'Yes, integration with AV systems is supported.',
+            ],
 
         ]);
 
@@ -220,15 +269,15 @@ class SolutionPageSeeder extends Seeder
 
         /*
         |--------------------------------------------------------------------------
-        | RETAIL & SHOWROOM
+        | RETAIL & SHOWROOM LED SOLUTIONS
         |--------------------------------------------------------------------------
         */
 
-        $retail = SolutionPage::create([
-
-            'page_key' => 'retail',
+        $retail = Solution::create([
 
             'title' => 'Retail & Showroom LED Solutions',
+
+            'slug' => 'retail',
 
             'description' =>
                 'Modern retail LED display solutions for stores, malls, automotive showrooms, and commercial brand environments.',
@@ -236,17 +285,12 @@ class SolutionPageSeeder extends Seeder
             'why_led_media' =>
                 'LED Media delivers customized retail display solutions that combine visual impact, technical quality, and commercial functionality for modern businesses.',
 
-            'cta_title' =>
-                'Transform your retail environment with modern LED display solutions.',
+            'image' => 'solutions/retail.jpg',
 
-            'button_text' => 'Request Consultation',
-            'button_link' => '/contact',
-
-            'secondary_button_text' => 'Talk to Our Team',
-            'secondary_button_link' => '/contact',
+            'status' => true,
         ]);
 
-        $this->insertFeatures($retail->id, 'usage', [
+        $this->insertUses($retail->id, [
 
             'Automotive showrooms',
             'Fashion stores',
@@ -256,7 +300,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($retail->id, 'benefits', [
+        $this->insertBenefits($retail->id, [
 
             'Improved customer attraction',
             'Stronger brand visibility',
@@ -266,7 +310,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($retail->id, 'technical', [
+        $this->insertTechnicalFeatures($retail->id, [
 
             'Seamless LED display systems',
             'High-definition visuals',
@@ -278,9 +322,29 @@ class SolutionPageSeeder extends Seeder
 
         $this->insertFaqs($retail->id, [
 
-            'Can retail displays show promotional videos?',
-            'Are the displays customizable?',
-            'Do you provide installation services?',
+            [
+                'question' =>
+                    'Can retail displays show promotional videos?',
+
+                'answer' =>
+                    'Yes, LED displays fully support promotional videos and animations.',
+            ],
+
+            [
+                'question' =>
+                    'Are the displays customizable?',
+
+                'answer' =>
+                    'Yes, screen sizes and configurations are customizable.',
+            ],
+
+            [
+                'question' =>
+                    'Do you provide installation services?',
+
+                'answer' =>
+                    'Yes, installation and setup services are included.',
+            ],
 
         ]);
 
@@ -288,15 +352,15 @@ class SolutionPageSeeder extends Seeder
 
         /*
         |--------------------------------------------------------------------------
-        | CONTROL SYSTEMS
+        | CONTROL SYSTEMS & INTEGRATION
         |--------------------------------------------------------------------------
         */
 
-        $control = SolutionPage::create([
-
-            'page_key' => 'control-systems',
+        $control = Solution::create([
 
             'title' => 'Control Systems & Integration',
+
+            'slug' => 'control-systems',
 
             'description' =>
                 'Integrated LED management systems for commercial networks, corporate displays, and centralized content operations.',
@@ -304,17 +368,12 @@ class SolutionPageSeeder extends Seeder
             'why_led_media' =>
                 'Our technical team provides complete system integration and configuration support to ensure reliable and user-friendly LED operations.',
 
-            'cta_title' =>
-                'Simplify your LED operations with professional integration solutions.',
+            'image' => 'solutions/control-systems.jpg',
 
-            'button_text' => 'Request Consultation',
-            'button_link' => '/contact',
-
-            'secondary_button_text' => 'Talk to Our Team',
-            'secondary_button_link' => '/contact',
+            'status' => true,
         ]);
 
-        $this->insertFeatures($control->id, 'usage', [
+        $this->insertUses($control->id, [
 
             'Commercial LED billboards',
             'Corporate display systems',
@@ -324,7 +383,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($control->id, 'benefits', [
+        $this->insertBenefits($control->id, [
 
             'Centralized content management',
             'Stable display performance',
@@ -334,7 +393,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($control->id, 'technical', [
+        $this->insertTechnicalFeatures($control->id, [
 
             'Display controller integration',
             'Remote management systems',
@@ -346,9 +405,29 @@ class SolutionPageSeeder extends Seeder
 
         $this->insertFaqs($control->id, [
 
-            'Can multiple LED screens be controlled together?',
-            'Do you provide content management setup?',
-            'Is training provided?',
+            [
+                'question' =>
+                    'Can multiple LED screens be controlled together?',
+
+                'answer' =>
+                    'Yes, multiple displays can be managed from a centralized system.',
+            ],
+
+            [
+                'question' =>
+                    'Do you provide content management setup?',
+
+                'answer' =>
+                    'Yes, our team provides full setup and configuration support.',
+            ],
+
+            [
+                'question' =>
+                    'Is training provided?',
+
+                'answer' =>
+                    'Yes, operational training is provided for clients.',
+            ],
 
         ]);
 
@@ -360,11 +439,11 @@ class SolutionPageSeeder extends Seeder
         |--------------------------------------------------------------------------
         */
 
-        $installation = SolutionPage::create([
-
-            'page_key' => 'installation',
+        $installation = Solution::create([
 
             'title' => 'Installation & Structural Works',
+
+            'slug' => 'installation',
 
             'description' =>
                 'Professional LED installation and structural engineering solutions for commercial projects and outdoor advertising systems.',
@@ -372,17 +451,12 @@ class SolutionPageSeeder extends Seeder
             'why_led_media' =>
                 'LED Media combines technical expertise, experienced installation teams, and project management discipline to deliver safe and professional LED installations.',
 
-            'cta_title' =>
-                'Partner with LED Media for professional installation and reliable project execution.',
+            'image' => 'solutions/installation.jpg',
 
-            'button_text' => 'Request Consultation',
-            'button_link' => '/contact',
-
-            'secondary_button_text' => 'Talk to Our Team',
-            'secondary_button_link' => '/contact',
+            'status' => true,
         ]);
 
-        $this->insertFeatures($installation->id, 'usage', [
+        $this->insertUses($installation->id, [
 
             'Outdoor LED billboards',
             'Commercial buildings',
@@ -392,7 +466,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($installation->id, 'benefits', [
+        $this->insertBenefits($installation->id, [
 
             'Safe and reliable installation',
             'Professional structural support',
@@ -402,7 +476,7 @@ class SolutionPageSeeder extends Seeder
 
         ]);
 
-        $this->insertFeatures($installation->id, 'technical', [
+        $this->insertTechnicalFeatures($installation->id, [
 
             'Steel structure fabrication',
             'Electrical system integration',
@@ -414,33 +488,103 @@ class SolutionPageSeeder extends Seeder
 
         $this->insertFaqs($installation->id, [
 
-            'Do you handle structural fabrication?',
-            'How long does installation take?',
-            'Do you provide after-installation support?',
+            [
+                'question' =>
+                    'Do you handle structural fabrication?',
+
+                'answer' =>
+                    'Yes, we provide complete structural fabrication services.',
+            ],
+
+            [
+                'question' =>
+                    'How long does installation take?',
+
+                'answer' =>
+                    'Installation duration depends on project size and complexity.',
+            ],
+
+            [
+                'question' =>
+                    'Do you provide after-installation support?',
+
+                'answer' =>
+                    'Yes, we provide maintenance and technical support after installation.',
+            ],
 
         ]);
     }
 
+
+
     /*
     |--------------------------------------------------------------------------
-    | INSERT FEATURES
+    | INSERT USES
     |--------------------------------------------------------------------------
     */
 
-    private function insertFeatures($pageId, $type, $items)
+    private function insertUses($solutionId, $items): void
     {
         foreach ($items as $item) {
 
-            SolutionFeature::create([
+            SolutionUse::create([
 
-                'solution_page_id' => $pageId,
-
-                'type' => $type,
+                'solution_id' => $solutionId,
 
                 'title' => $item,
             ]);
         }
     }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | INSERT BENEFITS
+    |--------------------------------------------------------------------------
+    */
+
+    private function insertBenefits($solutionId, $items): void
+    {
+        foreach ($items as $item) {
+
+            SolutionBenefit::create([
+
+                'solution_id' => $solutionId,
+
+                'title' => $item,
+            ]);
+        }
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | INSERT TECHNICAL FEATURES
+    |--------------------------------------------------------------------------
+    */
+
+    private function insertTechnicalFeatures($solutionId, $items): void
+    {
+        $number = 1;
+
+        foreach ($items as $item) {
+
+            TechnicalFeature::create([
+
+                'solution_id' => $solutionId,
+
+                'feature_number' => str_pad($number, 2, '0', STR_PAD_LEFT),
+
+                'title' => $item,
+            ]);
+
+            $number++;
+        }
+    }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -448,15 +592,17 @@ class SolutionPageSeeder extends Seeder
     |--------------------------------------------------------------------------
     */
 
-    private function insertFaqs($pageId, $items)
+    private function insertFaqs($solutionId, $items): void
     {
         foreach ($items as $item) {
 
             SolutionFaq::create([
 
-                'solution_page_id' => $pageId,
+                'solution_id' => $solutionId,
 
-                'question' => $item,
+                'question' => $item['question'],
+
+                'answer' => $item['answer'],
             ]);
         }
     }

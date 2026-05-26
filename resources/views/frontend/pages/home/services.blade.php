@@ -1,16 +1,14 @@
 <!-- =========================================
-     WHY CLIENTS TRUST SECTION
-========================================= -->
-<!-- =========================================
      LED SOLUTIONS SECTION
 ========================================= -->
-<!-- GRID -->
+
 <section class="solution-section">
 
     <div class="container">
 
         <!-- TITLE -->
         <div class="solution-header">
+
             <h2>
                 Our
                 <span>LED</span>
@@ -18,6 +16,7 @@
                 <br>
                 Solutions
             </h2>
+
         </div>
 
         <!-- SLIDER -->
@@ -25,7 +24,12 @@
 
             <!-- LEFT -->
             <button class="slider-arrow left-arrow">
-                <img src="{{ asset('icon/Polygon1.png') }}" alt="Previous">
+
+                <img
+                    src="{{ asset('storage/icon/Polygon1.png') }}"
+                    alt="Previous"
+                >
+
             </button>
 
             <!-- GRID -->
@@ -33,13 +37,36 @@
 
                 @foreach($services as $key => $service)
 
+                    @php
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | FIX IMAGE PATH
+                        |--------------------------------------------------------------------------
+                        | Remove extra "storage/" if already exists
+                        */
+
+                        $thumbnail = ltrim(
+                            str_replace('storage/', '', $service->thumbnail),
+                            '/'
+                        );
+
+                    @endphp
+
                     <div class="solution-card {{ $key == 0 ? 'active-card' : '' }}">
 
+                        <!-- IMAGE -->
                         <div class="solution-image">
-                            <img src="{{ asset('storage/' . $service->thumbnail) }}"
-                                 alt="{{ $service->title }}">
+
+                          <img
+                        src="{{ asset('storage/' . $thumbnail) }}"
+                        alt="{{ $service->title }}"
+                        loading="lazy"
+                    >
+
                         </div>
 
+                        <!-- CONTENT -->
                         <div class="solution-content">
 
                             <h3>
@@ -60,7 +87,12 @@
 
             <!-- RIGHT -->
             <button class="slider-arrow right-arrow">
-                <img src="{{ asset('icon/Polygon2.png') }}" alt="Next">
+
+                <img
+                    src="{{ asset('storage/icon/Polygon2.png') }}"
+                    alt="Next"
+                >
+
             </button>
 
         </div>
@@ -68,8 +100,14 @@
     </div>
 
 </section>
+
+
+<!-- =========================================
+     MARQUEE SECTION
+========================================= -->
+
 <section class="banner">
-      <!-- MARQUEE -->
+
     <div class="solution-marquee">
 
         <div class="marquee-track">
@@ -95,8 +133,10 @@
 
 </section>
 
+
 <style>
-    /* =========================================================
+
+/* =========================================================
    SOLUTION SECTION
 ========================================================= */
 
@@ -106,13 +146,15 @@
 
     padding: 120px 0 90px;
 
-    background: #ffffff !important;
+    background: #ffffff;
 
     overflow: hidden;
 }
 
 
-/* SOFT BLUE GLOW */
+/* =========================================================
+   BLUE GLOW
+========================================================= */
 
 .solution-section::before{
 
@@ -166,7 +208,7 @@
     color: #111827;
 
     font-size: 56px;
-    font-weight: 100;
+    font-weight: 300;
 
     line-height: 1.1;
 
@@ -203,37 +245,47 @@
 
 .slider-arrow{
 
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    height: 58px;
 
-    min-width: 56px;
+    min-width: 58px;
 
     border: none;
 
     border-radius: 50%;
 
-    background: #ffffff;
+    background:
+        rgba(255,255,255,.95);
 
     border:
         1px solid rgba(0,0,0,.08);
 
     box-shadow:
-        0 10px 25px rgba(0,0,0,.06);
+        0 10px 25px rgba(0,0,0,.08);
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    transition: .35s ease;
-
     cursor: pointer;
+
+    transition: .35s ease;
+}
+
+
+.slider-arrow img{
+
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
 }
 
 
 .slider-arrow:hover{
 
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 
     background:
         linear-gradient(
@@ -243,13 +295,7 @@
         );
 
     box-shadow:
-        0 10px 25px rgba(0,102,255,.25);
-}
-
-
-.arrow-icon{
-
-    width: 16px;
+        0 12px 28px rgba(0,102,255,.28);
 }
 
 
@@ -278,14 +324,14 @@
 
     position: relative;
 
-    border-radius: 26px;
+    border-radius: 28px;
 
     overflow: hidden;
 
     background: #ffffff;
 
     border:
-        1px solid rgba(0,0,0,.08);
+        1px solid rgba(0,0,0,.06);
 
     transition: .4s ease;
 
@@ -301,7 +347,7 @@
 .active-card{
 
     border:
-        1px solid rgba(0,102,255,.35);
+        1px solid rgba(0,102,255,.28);
 
     box-shadow:
         0 20px 45px rgba(0,102,255,.12);
@@ -328,9 +374,13 @@
 
 .solution-image{
 
+    position: relative;
+
     height: 320px;
 
     overflow: hidden;
+
+    background: #f3f4f6;
 }
 
 
@@ -342,10 +392,12 @@
     object-fit: cover;
 
     transition: .6s ease;
+
+    display: block;
 }
 
 
-.solution-card:hover img{
+.solution-card:hover .solution-image img{
 
     transform: scale(1.06);
 }
@@ -548,4 +600,5 @@
         margin-right: 60px;
     }
 }
+
 </style>

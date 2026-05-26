@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\HomePageSection;
@@ -72,7 +72,7 @@ class PageController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | SHARED DATA LOADER — 2 queries max per page
+    | SHARED DATA LOADER
     |--------------------------------------------------------------------------
     */
 
@@ -139,52 +139,13 @@ class PageController extends Controller
         return view('frontend.pages.services.index', $data);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | SOLUTIONS
-    |--------------------------------------------------------------------------
-    */
-
-    public function outdoorBillboards()
+    public function serviceShow(string $slug)
     {
-        return view('frontend.pages.solutions.outdoor-billboards',
-            $this->getSharedData('solutions.outdoor-billboards'));
-    }
+        $service = Service::where('slug', $slug)
+            ->where('status', 1)
+            ->firstOrFail();
 
-    public function indoorCommercial()
-    {
-        return view('frontend.pages.solutions.indoor-commercial',
-            $this->getSharedData('solutions.indoor-commercial'));
-    }
-
-    public function finePixel()
-    {
-        return view('frontend.pages.solutions.fine-pixel',
-            $this->getSharedData('solutions.fine-pixel'));
-    }
-
-    public function meetingRoom()
-    {
-        return view('frontend.pages.solutions.meeting-room',
-            $this->getSharedData('solutions.meeting-room'));
-    }
-
-    public function retail()
-    {
-        return view('frontend.pages.solutions.retail',
-            $this->getSharedData('solutions.retail'));
-    }
-
-    public function controlSystems()
-    {
-        return view('frontend.pages.solutions.control-systems',
-            $this->getSharedData('solutions.control-systems'));
-    }
-
-    public function installation()
-    {
-        return view('frontend.pages.solutions.installation',
-            $this->getSharedData('solutions.installation'));
+        return view('frontend.pages.services.show', compact('service'));
     }
 
     /*
@@ -193,49 +154,49 @@ class PageController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function industryOutdoor()
+    public function outdoorAd()
     {
         return view('frontend.pages.industry.outdoorAd',
             $this->getSharedData('industries.outdoorAd'));
     }
 
-    public function industryRetail()
+    public function retail()
     {
         return view('frontend.pages.industry.retail',
             $this->getSharedData('industries.retail'));
     }
 
-    public function industryCorporate()
+    public function corporate()
     {
         return view('frontend.pages.industry.corporate',
             $this->getSharedData('industries.corporate'));
     }
 
-    public function industryDevelopers()
+    public function developers()
     {
         return view('frontend.pages.industry.developers',
             $this->getSharedData('industries.developers'));
     }
 
-    public function industryAutomotive()
+    public function automotive()
     {
         return view('frontend.pages.industry.automotive',
             $this->getSharedData('industries.automotive'));
     }
 
-    public function industryHospitality()
+    public function hospitality()
     {
         return view('frontend.pages.industry.hospitality',
             $this->getSharedData('industries.hospitality'));
     }
 
-    public function industryBanks()
+    public function banks()
     {
         return view('frontend.pages.industry.banks',
             $this->getSharedData('industries.banks'));
     }
 
-    public function industryGovernment()
+    public function government()
     {
         return view('frontend.pages.industry.government',
             $this->getSharedData('industries.government'));
@@ -276,15 +237,15 @@ class PageController extends Controller
         ]);
     }
 
-public function projectsRetail()
-{
-    return view('frontend.pages.projects.index', [
-        'projects' => Project::where('status', 1)
-            ->where('category', 'retail')  // ← was 'type', now 'category'
-            ->latest()
-            ->paginate(12),
-    ]);
-}
+    public function projectsRetail()
+    {
+        return view('frontend.pages.projects.index', [
+            'projects' => Project::where('status', 1)
+                ->where('category', 'retail')
+                ->latest()->paginate(12),
+        ]);
+    }
+
     public function projectsCorporate()
     {
         return view('frontend.pages.projects.corporate', [

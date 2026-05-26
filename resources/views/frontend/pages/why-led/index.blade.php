@@ -121,7 +121,7 @@
                 <div class="vision-mission-icon">
 
                     <img
-                        src="{{ asset('icon/goal.png') }}"
+                        src="{{ asset('storage/icon/goal.png') }}"
                         alt="Goal Icon"
                     >
 
@@ -151,8 +151,8 @@
                 <div class="vision-mission-icon">
 
                     <img
-                        src="{{ asset('icon/idea.png') }}"
-                        alt="Idea Icon"
+                       src="{{ asset('storage/icon/idea.png') }}"
+                        alt="Goal Icon"
                     >
 
                 </div>

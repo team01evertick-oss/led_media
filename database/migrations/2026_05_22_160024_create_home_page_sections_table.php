@@ -12,8 +12,7 @@ return new class extends Migration
 
             $table->id();
 
-            $table->string('section_key')->unique(); 
-            // hero, about, featured_projects, services, cta
+            $table->string('section_key')->unique();
 
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
@@ -29,6 +28,10 @@ return new class extends Migration
             $table->string('secondary_button_text')->nullable();
             $table->string('secondary_button_link')->nullable();
 
+            // SEO
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+
             // dynamic data
             $table->json('extra_data')->nullable();
             $table->json('stats')->nullable();
@@ -36,12 +39,16 @@ return new class extends Migration
             // featured links
             $table->json('featured_project_ids')->nullable();
             $table->json('featured_service_ids')->nullable();
+            // FIXED
+            $table->json('featured_industry_ids')->nullable();
 
             $table->boolean('status')->default(1);
             $table->integer('sort_order')->default(0);
 
             $table->timestamps();
         });
+        
+
     }
 
     public function down(): void

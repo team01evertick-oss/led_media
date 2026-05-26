@@ -1,44 +1,67 @@
 <!-- =========================================================
      FEATURED PROJECTS SECTION
 ========================================================= -->
+
 <section class="featured-projects">
 
     <div class="featured-container">
 
-        {{-- SECTION HEADING --}}
+        <!-- SECTION HEADING -->
         <div class="section-heading">
 
-            <h2 style="color:#fff; font-size:36px; font-weight:400; margin-bottom:10px;">
+            <h2>
                 Featured Projects
             </h2>
 
-            <p style="color:rgba(255,255,255,0.8); font-size:16px; line-height:1.6;">
-                Proven Project Experience Across Cambodia
-                <br>
-                LED Media has successfully completed LED display installations and event
-                production projects for leading organizations, banks, brands, and institutions nationwide.
+            <p>
+                Proven Project Experience Across Cambodia.
+                LED Media has successfully completed LED display
+                installations and event production projects for
+                leading organizations, banks, brands,
+                and institutions nationwide.
             </p>
 
         </div>
 
-        {{-- PROJECT LIST --}}
+        <!-- PROJECT LIST -->
         @forelse($featuredProjects ?? collect() as $project)
+
+            @php
+
+                $thumbnail = $project->thumbnail
+                    ? asset('storage/' . ltrim(str_replace('storage/', '', $project->thumbnail), '/'))
+                    : asset('storage/image/project-1.png');
+
+            @endphp
 
             <div class="project-card">
 
+                <!-- IMAGE -->
                 <div class="project-image">
-                    <img src="{{ $project->thumbnail ? asset('storage/' . $project->thumbnail) : asset('image/project-1.png') }}"
-                         alt="{{ $project->title }}">
+
+                    <img
+                        src="{{ $thumbnail }}"
+                        alt="{{ $project->title }}"
+                        loading="lazy"
+                    >
+
                 </div>
 
+                <!-- CONTENT -->
                 <div class="project-content">
 
-                    <h3>{{ $project->title }}</h3>
+                    <h3>
+                        {{ $project->title }}
+                    </h3>
 
-                    <p>{{ $project->short_description }}</p>
+                    <p>
+                        {{ $project->short_description }}
+                    </p>
 
-                    <a href="{{ route('projects.show', $project->slug) }}"
-                       class="project-btn">
+                    <a
+                        href="{{ route('projects.show', $project->slug) }}"
+                        class="project-btn"
+                    >
                         More Detail
                     </a>
 
@@ -48,14 +71,19 @@
 
         @empty
 
-            <p style="color:white;">No featured projects found.</p>
+            <p class="empty-text">
+                No featured projects found.
+            </p>
 
         @endforelse
 
-        {{-- VIEW MORE --}}
+        <!-- VIEW MORE -->
         <div class="project-more">
 
-            <a href="{{ route('projects.index') }}" class="project-more-btn">
+            <a
+                href="{{ route('projects.index') }}"
+                class="project-more-btn"
+            >
                 View More Projects
             </a>
 
@@ -64,6 +92,7 @@
     </div>
 
 </section>
+
 
 <!-- =========================================================
      WHY CLIENTS TRUST LED MEDIA
@@ -113,14 +142,14 @@
                     </h3>
 
                     <p>
-                        {{ $service->description }}
+                        {{ Str::limit(strip_tags($service->description), 140) }}
                     </p>
 
-                    <a href="{{ route('services.show', $service->slug) }}"
-                       class="trust-btn">
-
+                    <a
+                        href="{{ route('services.show', $service->slug) }}"
+                        class="trust-btn"
+                    >
                         View Detail
-
                     </a>
 
                 </div>
@@ -132,6 +161,8 @@
     </div>
 
 </section>
+
+
 <!-- =========================================================
      HOW WE WORK
 ========================================================= -->
@@ -149,13 +180,17 @@
 
         </div>
 
-        <!-- WORKFLOW GRID -->
+        <!-- GRID -->
         <div class="workflow-grid">
 
             <!-- CARD -->
             <div class="workflow-card">
 
-                <img src="{{ asset('image/partner.png') }}" alt="">
+                <img
+                    src="{{ asset('storage/image/partner.png') }}"
+                    alt="Consultation"
+                    loading="lazy"
+                >
 
                 <div class="workflow-overlay"></div>
 
@@ -171,23 +206,27 @@
 
                         <p>
                             Understanding project objectives,
-                            location conditions, and technical requirements.
+                            location conditions,
+                            and technical requirements.
                         </p>
 
                     </div>
 
-                    <span>
-                        01
-                    </span>
+                    <span>01</span>
 
                 </div>
 
             </div>
 
+
             <!-- CARD -->
             <div class="workflow-card">
 
-                <img src="{{ asset('image/home_page_bg1.png') }}" alt="">
+                <img
+                    src="{{ asset('storage/image/home_page_bg1.png') }}"
+                    alt="Planning"
+                    loading="lazy"
+                >
 
                 <div class="workflow-overlay"></div>
 
@@ -202,24 +241,27 @@
                         </h3>
 
                         <p>
-                            Developing suitable LED display recommendations,
-                            technical specifications, and layout planning.
+                            Developing suitable LED display
+                            recommendations and layout planning.
                         </p>
 
                     </div>
 
-                    <span>
-                        02
-                    </span>
+                    <span>02</span>
 
                 </div>
 
             </div>
 
+
             <!-- CARD -->
             <div class="workflow-card">
 
-                <img src="{{ asset('image/home_page_bg1.png') }}" alt="">
+                <img
+                    src="{{ asset('storage/image/home_page_bg1.png') }}"
+                    alt="Quotation"
+                    loading="lazy"
+                >
 
                 <div class="workflow-overlay"></div>
 
@@ -234,24 +276,27 @@
                         </h3>
 
                         <p>
-                            Understanding project objectives,
-                            location conditions, and technical requirements.
+                            Clear budgeting, planning,
+                            and project preparation.
                         </p>
 
                     </div>
 
-                    <span>
-                        03
-                    </span>
+                    <span>03</span>
 
                 </div>
 
             </div>
 
+
             <!-- CARD -->
             <div class="workflow-card">
 
-                <img src="{{ asset('image/home_page_bg1.png') }}" alt="">
+                <img
+                    src="{{ asset('storage/image/home_page_bg1.png') }}"
+                    alt="Installation"
+                    loading="lazy"
+                >
 
                 <div class="workflow-overlay"></div>
 
@@ -266,24 +311,27 @@
                         </h3>
 
                         <p>
-                            Professional setup, structural works,
-                            system integration, and technical testing.
+                            Professional setup,
+                            integration, and testing.
                         </p>
 
                     </div>
 
-                    <span>
-                        04
-                    </span>
+                    <span>04</span>
 
                 </div>
 
             </div>
 
+
             <!-- CARD -->
             <div class="workflow-card">
 
-                <img src="{{ asset('image/home_page_bg1.png') }}" alt="">
+                <img
+                    src="{{ asset('storage/image/home_page_bg1.png') }}"
+                    alt="Handover"
+                    loading="lazy"
+                >
 
                 <div class="workflow-overlay"></div>
 
@@ -298,24 +346,28 @@
                         </h3>
 
                         <p>
-                            Ensuring stable operation, visual performance,
-                            and project completion standards.
+                            Stable operation,
+                            performance validation,
+                            and project completion.
                         </p>
 
                     </div>
 
-                    <span>
-                        05
-                    </span>
+                    <span>05</span>
 
                 </div>
 
             </div>
 
+
             <!-- CARD -->
             <div class="workflow-card">
 
-                <img src="{{ asset('image/home_page_bg1.png') }}" alt="">
+                <img
+                    src="{{ asset('storage/image/home_page_bg1.png') }}"
+                    alt="Support"
+                    loading="lazy"
+                >
 
                 <div class="workflow-overlay"></div>
 
@@ -330,15 +382,13 @@
                         </h3>
 
                         <p>
-                            Providing long-term maintenance,
-                            repair services, and technical assistance.
+                            Long-term maintenance
+                            and technical assistance.
                         </p>
 
                     </div>
 
-                    <span>
-                        06
-                    </span>
+                    <span>06</span>
 
                 </div>
 
@@ -349,465 +399,570 @@
     </div>
 
 </section>
+
+
 <style>
-    /* =========================================================
-   FEATURED PROJECTS SECTION
+
+/* =========================================================
+   FEATURED PROJECTS
 ========================================================= */
 
 .featured-projects{
-    position: relative;
-    padding: 120px 0;
+
+    padding: 110px 0;
+
     background: #ffffff;
+
     overflow: hidden;
 }
 
-/* BLUE GLOW */
-.featured-projects::before{
-    content: "";
-    position: absolute;
-    width: 850px;
-    height: 850px;
-    left: -300px;
-    bottom: -300px;
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(0,102,255,.12),
-        transparent 70%
-    );
-    z-index: 0;
-}
-
 .featured-container{
-    position: relative;
-    z-index: 2;
+
     max-width: 1280px;
+
     margin: auto;
+
     padding: 0 20px;
 }
 
+
 /* =========================================================
-   SECTION HEADER
+   SECTION HEADING
 ========================================================= */
 
 .section-heading{
-    margin-bottom: 60px;
+
+    margin-bottom: 55px;
 }
 
 .section-heading h2{
-    font-size: 52px;
+
+    font-size: 48px;
+
     font-weight: 700;
+
     color: #111827;
+
     margin-bottom: 18px;
-    line-height: 1.1;
 }
 
 .section-heading p{
-    font-size: 16px;
+
+    font-size: 15px;
+
     line-height: 1.9;
+
     color: #6b7280;
+
     max-width: 760px;
 }
+
 
 /* =========================================================
    PROJECT CARD
 ========================================================= */
 
 .project-card{
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-bottom: 32px;
-    padding: 26px;
-    border-radius: 30px;
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,.06);
-    box-shadow: 0 12px 35px rgba(0,0,0,.05);
-    overflow: hidden;
-    transition: .35s ease;
-}
 
-.project-card::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(0,102,255,.05),
-        transparent 60%
-    );
-    opacity: 0;
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    padding: 24px;
+
+    border-radius: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0,0,0,.06);
+
+    margin-bottom: 28px;
+
     transition: .35s ease;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.05);
 }
 
 .project-card:hover{
-    transform: translateY(-8px);
-    border-color: rgba(0,102,255,.15);
-    box-shadow: 0 22px 55px rgba(0,102,255,.12);
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 45px rgba(0,102,255,.10);
 }
 
-.project-card:hover::before{
-    opacity: 1;
-}
-
-.project-card.reverse{
-    flex-direction: row-reverse;
-}
 
 /* =========================================================
-   PROJECT IMAGE
+   IMAGE
 ========================================================= */
 
 .project-image{
+
     flex: 1;
-    min-width: 340px;
-    border-radius: 22px;
+
+    min-width: 320px;
+
     overflow: hidden;
-    position: relative;
+
+    border-radius: 18px;
 }
 
 .project-image img{
+
     width: 100%;
-    height: 300px;
+
+    height: 280px;
+
     object-fit: cover;
+
     transition: .5s ease;
 }
 
-.project-card:hover .project-image img{
-    transform: scale(1.06);
+.project-card:hover img{
+
+    transform: scale(1.05);
 }
 
+
 /* =========================================================
-   PROJECT CONTENT
+   CONTENT
 ========================================================= */
 
 .project-content{
+
     flex: 1;
-    position: relative;
-    z-index: 2;
 }
 
 .project-content h3{
-    font-size: 34px;
+
+    font-size: 30px;
+
     font-weight: 700;
+
     color: #111827;
+
     margin-bottom: 16px;
-    line-height: 1.2;
 }
 
 .project-content p{
-    font-size: 16px;
+
+    font-size: 15px;
+
     line-height: 1.9;
+
     color: #6b7280;
-    margin-bottom: 30px;
+
+    margin-bottom: 28px;
 }
 
+
 /* =========================================================
-   BUTTON
+   BUTTONS
 ========================================================= */
 
-.project-btn{
+.project-btn,
+.project-more-btn,
+.trust-btn{
+
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
-    height: 54px;
-    padding: 0 34px;
-    border-radius: 60px;
+
+    height: 52px;
+
+    padding: 0 28px;
+
+    border-radius: 999px;
+
     text-decoration: none;
+
     color: #ffffff;
+
     font-size: 14px;
+
     font-weight: 600;
-    background: linear-gradient(
-        135deg,
-        #0057ff,
-        #2563eb
-    );
-    box-shadow: 0 12px 30px rgba(0,102,255,.20);
+
+    background:
+        linear-gradient(
+            135deg,
+            #0057ff,
+            #2563eb
+        );
+
     transition: .35s ease;
 }
 
-.project-btn:hover{
-    transform: translateY(-4px);
+.project-btn:hover,
+.project-more-btn:hover,
+.trust-btn:hover{
+
+    transform: translateY(-3px);
+
     color: #ffffff;
-    box-shadow: 0 18px 40px rgba(0,102,255,.28);
 }
+
 
 /* =========================================================
    VIEW MORE
 ========================================================= */
 
 .project-more{
+
     text-align: center;
-    margin-top: 60px;
+
+    margin-top: 55px;
 }
 
-.project-more-btn{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 260px;
-    height: 58px;
-    padding: 0 40px;
-    border-radius: 60px;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
-    background: linear-gradient(
-        135deg,
-        #0057ff,
-        #2563eb
-    );
-    box-shadow: 0 14px 35px rgba(0,102,255,.22);
-    transition: .35s ease;
-}
-
-.project-more-btn:hover{
-    transform: translateY(-5px);
-    color: #ffffff;
-    box-shadow: 0 22px 45px rgba(0,102,255,.32);
-}
 
 /* =========================================================
    TRUST SECTION
 ========================================================= */
 
 .trust-section{
-    position: relative;
-    padding: 120px 0;
+
+    padding: 110px 0;
+
     background: #ffffff;
-    overflow: hidden;
 }
 
-.trust-section::before{
-    content: "";
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    top: -250px;
-    right: -250px;
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(0,102,255,.08),
-        transparent 70%
-    );
-    z-index: 0;
-}
-
-.trust-section .container{
-    position: relative;
-    z-index: 2;
-}
 
 /* =========================================================
    TRUST HEADER
 ========================================================= */
 
 .trust-header{
-    margin-bottom: 45px;
+
+    margin-bottom: 40px;
 }
 
 .trust-header h2{
-    font-size: 50px;
+
+    font-size: 46px;
+
     font-weight: 700;
-    color: #111827;
+
     line-height: 1.2;
+
+    color: #111827;
 }
 
 .trust-header span{
+
     color: #0057ff;
 }
+
 
 /* =========================================================
    TOP BAR
 ========================================================= */
 
 .trust-top-bar{
-    background: linear-gradient(
-        90deg,
-        #0057ff,
-        #2563eb
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #0057ff,
+            #2563eb
+        );
+
     border-radius: 14px;
+
     padding: 18px 0;
+
     overflow: hidden;
-    margin-bottom: 55px;
+
+    margin-bottom: 50px;
 }
 
 .trust-bar-track{
+
     display: flex;
+
     width: max-content;
-    animation: marqueeMove 18s linear infinite;
+
+    animation:
+        marqueeMove 18s linear infinite;
 }
 
 .trust-bar-track span{
+
     color: #ffffff;
+
     font-size: 14px;
+
     font-weight: 600;
-    text-transform: uppercase;
+
     margin-right: 80px;
-    letter-spacing: .5px;
+
+    text-transform: uppercase;
 }
+
 
 /* =========================================================
    TRUST GRID
 ========================================================= */
 
 .trust-grid{
+
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 28px;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 24px;
 }
+
 
 /* =========================================================
    TRUST CARD
 ========================================================= */
 
 .trust-card{
+
+    padding: 34px;
+
+    border-radius: 22px;
+
     background: #ffffff;
+
     border: 1px solid rgba(0,0,0,.06);
-    border-radius: 24px;
-    padding: 38px;
+
     transition: .35s ease;
-    box-shadow: 0 10px 35px rgba(0,0,0,.05);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.05);
 }
 
 .trust-card:hover{
-    transform: translateY(-6px);
-    border-color: rgba(0,102,255,.15);
-    box-shadow: 0 20px 45px rgba(0,102,255,.10);
+
+    transform: translateY(-5px);
 }
 
 .trust-card.active{
-    background: linear-gradient(
-        135deg,
-        #0057ff,
-        #2563eb
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #0057ff,
+            #2563eb
+        );
+
     border: none;
 }
 
 .trust-card.active h3,
 .trust-card.active p{
+
     color: #ffffff;
 }
 
 .trust-card h3{
-    font-size: 24px;
+
+    font-size: 22px;
+
     font-weight: 700;
+
+    margin-bottom: 16px;
+
     color: #111827;
-    margin-bottom: 18px;
 }
 
 .trust-card p{
-    font-size: 15px;
-    line-height: 1.9;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
     color: #6b7280;
+
+    margin-bottom: 26px;
 }
+
 
 /* =========================================================
    WORKFLOW SECTION
 ========================================================= */
 
 .workflow-section{
-    padding: 120px 0;
-    background: #ffffff;
+
+    padding: 110px 0;
+
+    background: #f3f3f5;
 }
 
+
 /* =========================================================
-   WORKFLOW TITLE
+   TITLE
 ========================================================= */
 
 .workflow-title{
-    margin-bottom: 55px;
+
+    margin-bottom: 35px;
 }
 
 .workflow-title h2{
-    font-size: 50px;
-    font-weight: 700;
-    color: #111827;
+
+    font-size: 40px;
+
+    font-weight: 100;
+
+    color: #050000;
 }
+
 
 /* =========================================================
    WORKFLOW GRID
 ========================================================= */
 
 .workflow-grid{
+
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 28px;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
 }
+
 
 /* =========================================================
    WORKFLOW CARD
 ========================================================= */
 
 .workflow-card{
+
     position: relative;
-    min-height: 340px;
-    border-radius: 28px;
+
+    height: 210px;
+
+    border-radius: 18px;
+
     overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0,0,0,.08);
+
+    background: #0f172a;
+
+    transition: .35s ease;
 }
 
+.workflow-card:hover{
+
+    transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
 .workflow-card img{
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     transition: .6s ease;
 }
 
 .workflow-card:hover img{
-    transform: scale(1.08);
+
+    transform: scale(1.06);
 }
 
-/* OVERLAY */
+
+/* =========================================================
+   OVERLAY
+========================================================= */
 
 .workflow-overlay{
+
     position: absolute;
+
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(0,0,0,.05),
-        rgba(0,0,0,.75)
-    );
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.82)
+        );
 }
 
-/* CONTENT */
+
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .workflow-content{
+
     position: absolute;
+
     inset: 0;
+
     z-index: 2;
-    padding: 35px;
+
+    padding: 22px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: flex-start;
 }
 
 .workflow-content h3{
-    font-size: 30px;
+
+    font-size: 16px;
+
     font-weight: 700;
-    line-height: 1.2;
+
+    line-height: 1.3;
+
     color: #ffffff;
-    margin-bottom: 18px;
+
+    margin-bottom: 10px;
 }
 
 .workflow-content p{
-    font-size: 15px;
-    line-height: 1.9;
-    color: rgba(255,255,255,.88);
-    max-width: 360px;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    color: rgba(255,255,255,.82);
+
+    max-width: 220px;
+
+    margin: 0;
 }
 
 .workflow-content span{
-    font-size: 52px;
+
+    font-size: 28px;
+
     font-weight: 700;
-    color: #ffffff;
-    opacity: .9;
+
+    color: #60a5fa;
 }
+
+
+/* =========================================================
+   EMPTY TEXT
+========================================================= */
+
+.empty-text{
+
+    color: #6b7280;
+
+    font-size: 16px;
+}
+
 
 /* =========================================================
    RESPONSIVE
@@ -815,62 +970,85 @@
 
 @media(max-width:991px){
 
-    .project-card,
-    .project-card.reverse{
+    .project-card{
+
         flex-direction: column;
     }
 
     .project-image{
+
         min-width: 100%;
     }
 
     .trust-grid,
     .workflow-grid{
+
         grid-template-columns: 1fr;
     }
 
     .section-heading h2,
     .trust-header h2,
     .workflow-title h2{
-        font-size: 38px;
+
+        font-size: 34px;
     }
 }
+
 
 @media(max-width:576px){
 
     .featured-projects,
     .trust-section,
     .workflow-section{
-        padding: 80px 0;
+
+        padding: 75px 0;
     }
 
     .section-heading h2,
     .trust-header h2,
     .workflow-title h2{
-        font-size: 30px;
+
+        font-size: 28px;
     }
 
     .project-content h3{
-        font-size: 26px;
-    }
 
-    .workflow-content{
-        padding: 24px;
-    }
-
-    .workflow-content h3{
         font-size: 24px;
     }
 
+    .workflow-card{
+
+        height: 190px;
+    }
+
+    .workflow-content{
+
+        padding: 18px;
+    }
+
+    .workflow-content h3{
+
+        font-size: 14px;
+    }
+
+    .workflow-content p{
+
+        font-size: 10px;
+    }
+
     .workflow-content span{
-        font-size: 42px;
+
+        font-size: 22px;
     }
 
     .project-btn,
-    .project-more-btn{
+    .project-more-btn,
+    .trust-btn{
+
         width: 100%;
     }
 }
+
 
 /* =========================================================
    ANIMATION
@@ -879,11 +1057,14 @@
 @keyframes marqueeMove{
 
     from{
+
         transform: translateX(0);
     }
 
     to{
+
         transform: translateX(-50%);
     }
 }
+
 </style>

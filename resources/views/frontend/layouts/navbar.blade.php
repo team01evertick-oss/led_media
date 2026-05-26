@@ -1,7 +1,6 @@
 {{-- =========================================================
 BOOTSTRAP + FONT AWESOME
 ========================================================= --}}
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -14,178 +13,120 @@ HEADER
     <div class="top-bar">
         <div class="container">
             <div class="topbar-wrapper">
-
-                {{-- LEFT --}}
                 <div class="left-info">
-
-                    <a href="mailto:Khemarin.ctn@gmail.com">
-                        <i class="fa-solid fa-envelope"></i>
-                        Khemarin.ctn@gmail.com
-                    </a>
-
-                    <a href="tel:089911988">
-                        <i class="fa-solid fa-phone"></i>
-                        089 911 988
-                    </a>
-
-                    <a href="tel:081688880">
-                        <i class="fa-solid fa-phone"></i>
-                        081 688 880
-                    </a>
-
+                    <a href="mailto:Khemarin.ctn@gmail.com"><i class="fa-solid fa-envelope"></i> Khemarin.ctn@gmail.com</a>
+                    <a href="tel:089911988"><i class="fa-solid fa-phone"></i> 089 911 988</a>
+                    <a href="tel:081688880"><i class="fa-solid fa-phone"></i> 081 688 880</a>
                 </div>
-
-                {{-- SOCIAL --}}
                 <div class="social-icons">
-
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-telegram"></i></a>
                     <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
-
                 </div>
-
             </div>
         </div>
     </div>
 
     {{-- NAVBAR --}}
     <div class="main-navbar">
+        <div class="navbar-inner">
 
-        <nav class="navbar navbar-expand-xl navbar-dark navbar-custom">
+            {{-- PILL --}}
+            <div class="nav-pill">
 
-            <div class="container-fluid">
 
-                {{-- MOBILE BUTTON --}}
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#mainMenu">
-
-                    <span class="navbar-toggler-icon"></span>
-
+                {{-- Hamburger (mobile) --}}
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
 
-                {{-- MENU --}}
-             <nav class="custom-navbar">
+                {{-- Nav links --}}
+                <ul class="nav-links" id="navLinks">
 
-    <div class="nav-wrapper">
+                    <li><a href="{{ route('home') }}"
+                           class="nav-link-item {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a></li>
 
-        <ul class="navbar-nav" id="mainNav">
+                    <li class="has-dropdown" data-panel="panel-solutions">
+                        <a href="javascript:void(0)"
+                           class="nav-link-item {{ request()->routeIs('solutions.*') ? 'is-active' : '' }}">
+                            Solutions <i class="fa-solid fa-chevron-down chev"></i>
+                        </a>
+                        {{-- Mobile inline --}}
+                        <ul class="mobile-sub">
+                            <li><a href="{{ route('solutions.outdoor-billboards') }}" class="{{ request()->routeIs('solutions.outdoor-billboards') ? 'is-active' : '' }}">Outdoor LED Billboards</a></li>
+                            <li><a href="{{ route('solutions.indoor-commercial') }}" class="{{ request()->routeIs('solutions.indoor-commercial') ? 'is-active' : '' }}">Indoor Commercial LED Displays</a></li>
+                            <li><a href="{{ route('solutions.fine-pixel') }}" class="{{ request()->routeIs('solutions.fine-pixel') ? 'is-active' : '' }}">Fine Pixel</a></li>
+                            <li><a href="{{ route('solutions.meeting-room') }}" class="{{ request()->routeIs('solutions.meeting-room') ? 'is-active' : '' }}">Meeting Room Displays</a></li>
+                            <li><a href="{{ route('solutions.retail') }}" class="{{ request()->routeIs('solutions.retail') ? 'is-active' : '' }}">Retail & Showroom LED Solutions</a></li>
+                            <li><a href="{{ route('solutions.control-systems') }}" class="{{ request()->routeIs('solutions.control-systems') ? 'is-active' : '' }}">Control Systems & Integration</a></li>
+                            <li><a href="{{ route('solutions.installation') }}" class="{{ request()->routeIs('solutions.installation') ? 'is-active' : '' }}">Installation & Structural Works</a></li>
+                        </ul>
+                    </li>
 
-            {{-- HOME --}}
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('home') ? 'active-link' : '' }}"
-                   href="{{ route('home') }}">
-                    Home
-                </a>
-            </li>
+                    <li><a href="{{ route('projects.index') }}"
+                           class="nav-link-item {{ request()->routeIs('projects.*') ? 'is-active' : '' }}">Projects</a></li>
 
-            {{-- SOLUTIONS --}}
-            <li class="nav-item dropdown-custom">
+                    <li class="has-dropdown" data-panel="panel-industries">
+                        <a href="javascript:void(0)"
+                           class="nav-link-item {{ request()->routeIs('industries.*') ? 'is-active' : '' }}">
+                            Industries <i class="fa-solid fa-chevron-down chev"></i>
+                        </a>
+                        {{-- Mobile inline --}}
+                        <ul class="mobile-sub">
+                            <li><a href="{{ route('industries.outdoorAd') }}">Outdoor Advertising Industry</a></li>
+                            <li><a href="{{ route('industries.retail') }}">Retail & Showroom Industry</a></li>
+                            <li><a href="{{ route('industries.corporate') }}">Corporate Offices Industry</a></li>
+                            <li><a href="{{ route('industries.developers') }}">Developers Industry</a></li>
+                            <li><a href="{{ route('industries.automotive') }}">Automotive Industry</a></li>
+                            <li><a href="{{ route('industries.hospitality') }}">Hospitality Industry</a></li>
+                            <li><a href="{{ route('industries.banks') }}">Banks Industry</a></li>
+                            <li><a href="{{ route('industries.government') }}">Government & Public Sector</a></li>
+                        </ul>
+                    </li>
 
-                <a href="javascript:void(0)"
-                   class="nav-link dropdown-toggle-custom {{ request()->routeIs('solutions.*') ? 'active-link' : '' }}">
-                    Solutions
-                    <i class="fa-solid fa-chevron-down"></i>
-                </a>
+                    <li><a href="{{ route('services.index') }}"
+                           class="nav-link-item {{ request()->routeIs('services.index') ? 'is-active' : '' }}">Service & Maintenance</a></li>
 
-                <div class="dropdown-menu-custom">
-                    <a href="{{ route('solutions.outdoor-billboards') }}">Outdoor LED Billboards</a>
-                    <a href="{{ route('solutions.indoor-commercial') }}">Indoor Commercial LED Displays</a>
-                    <a href="{{ route('solutions.fine-pixel') }}">Fine Pixel</a>
-                    <a href="{{ route('solutions.meeting-room') }}">Meeting Room Displays</a>
-                    <a href="{{ route('solutions.retail') }}">Retail & Showroom LED Solutions</a>
-                    <a href="{{ route('solutions.control-systems') }}">Control Systems & Integration</a>
-                    <a href="{{ route('solutions.installation') }}">Installation & Structural Works</a>
-                </div>
+                    <li><a href="{{ route('why-led-media') }}"
+                           class="nav-link-item {{ request()->routeIs('why-led-media') ? 'is-active' : '' }}">Why LED Media</a></li>
 
-            </li>
+                    <li><a href="{{ route('insights') }}"
+                           class="nav-link-item {{ request()->routeIs('insights') ? 'is-active' : '' }}">Insights</a></li>
 
-            {{-- PROJECTS --}}
-            <li class="nav-item dropdown-custom">
+                    <li><a href="{{ route('contact') }}"
+                           class="nav-link-item {{ request()->routeIs('contact') ? 'is-active' : '' }}">Contact</a></li>
 
-                <a href="javascript:void(0)"
-                   class="nav-link dropdown-toggle-custom {{ request()->routeIs('projects.*') ? 'active-link' : '' }}">
-                    Projects
-                    <i class="fa-solid fa-chevron-down"></i>
-                </a>
+                </ul>
+            </div>{{-- /.nav-pill --}}
 
-                <div class="dropdown-menu-custom">
-                    <a href="{{ route('projects.index') }}">All Projects</a>
-                    <a href="{{ route('projects.outdoor-billboard') }}">Outdoor Billboard Projects</a>
-                    <a href="{{ route('projects.commercial') }}">Commercial Installation Projects</a>
-                    <a href="{{ route('projects.retail') }}">Retail / Showroom Projects</a>
-                    <a href="{{ route('projects.corporate') }}">Corporate Display Projects</a>
-                    <a href="{{ route('projects.fine-pixel') }}">Fine Pixel Projects</a>
-                </div>
-
-            </li>
-
-            {{-- INDUSTRIES --}}
-            <li class="nav-item dropdown-custom">
-
-                <a href="javascript:void(0)"
-                   class="nav-link dropdown-toggle-custom {{ request()->routeIs('industries.*') ? 'active-link' : '' }}">
-                    Industries
-                    <i class="fa-solid fa-chevron-down"></i>
-                </a>
-
-                <div class="dropdown-menu-custom">
-                    <a href="{{ route('industries.outdoorAd') }}">Outdoor Advertising Industry</a>
-                    <a href="{{ route('industries.retail') }}">Retail & Showroom Industry</a>
-                    <a href="{{ route('industries.corporate') }}">Corporate Offices Industry</a>
-                    <a href="{{ route('industries.developers') }}">Developers Industry</a>
-                    <a href="{{ route('industries.automotive') }}">Automotive Industry</a>
-                    <a href="{{ route('industries.hospitality') }}">Hospitality Industry</a>
-                    <a href="{{ route('industries.banks') }}">Banks Industry</a>
-                    <a href="{{ route('industries.government') }}">Government & Public Sector</a>
-                </div>
-
-            </li>
-
-            {{-- SERVICES --}}
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('services.index') ? 'active-link' : '' }}"
-                   href="{{ route('services.index') }}">
-                    Service & Maintenance
-                </a>
-            </li>
-
-            {{-- WHY LED --}}
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('why-led-media') ? 'active-link' : '' }}"
-                   href="{{ route('why-led-media') }}">
-                    Why LED Media
-                </a>
-            </li>
-
-            {{-- INSIGHTS --}}
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('insights') ? 'active-link' : '' }}"
-                   href="{{ route('insights') }}">
-                    Insights
-                </a>
-            </li>
-
-            {{-- CONTACT --}}
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('contact') ? 'active-link' : '' }}"
-                   href="{{ route('contact') }}">
-                    Contact
-                </a>
-            </li>
-
-        </ul>
-
-    </div>
-
-</nav>
-
+            {{-- ═══════════════════════════════════════════
+                 DESKTOP DROPDOWN PANELS
+                 Outside the pill → no stacking-context clash
+                 Positioned relative to .navbar-inner
+            ═══════════════════════════════════════════ --}}
+            <div class="dd-panel" id="panel-solutions">
+                <a href="{{ route('solutions.outdoor-billboards') }}" class="{{ request()->routeIs('solutions.outdoor-billboards') ? 'is-active' : '' }}">Outdoor LED Billboards</a>
+                <a href="{{ route('solutions.indoor-commercial') }}" class="{{ request()->routeIs('solutions.indoor-commercial') ? 'is-active' : '' }}">Indoor Commercial LED Displays</a>
+                <a href="{{ route('solutions.fine-pixel') }}" class="{{ request()->routeIs('solutions.fine-pixel') ? 'is-active' : '' }}">Fine Pixel</a>
+                <a href="{{ route('solutions.meeting-room') }}" class="{{ request()->routeIs('solutions.meeting-room') ? 'is-active' : '' }}">Meeting Room Displays</a>
+                <a href="{{ route('solutions.retail') }}" class="{{ request()->routeIs('solutions.retail') ? 'is-active' : '' }}">Retail & Showroom LED Solutions</a>
+                <a href="{{ route('solutions.control-systems') }}" class="{{ request()->routeIs('solutions.control-systems') ? 'is-active' : '' }}">Control Systems & Integration</a>
+                <a href="{{ route('solutions.installation') }}" class="{{ request()->routeIs('solutions.installation') ? 'is-active' : '' }}">Installation & Structural Works</a>
             </div>
 
-        </nav>
+            <div class="dd-panel" id="panel-industries">
+                <a href="{{ route('industries.outdoorAd') }}">Outdoor Advertising Industry</a>
+                <a href="{{ route('industries.retail') }}">Retail & Showroom Industry</a>
+                <a href="{{ route('industries.corporate') }}">Corporate Offices Industry</a>
+                <a href="{{ route('industries.developers') }}">Developers Industry</a>
+                <a href="{{ route('industries.automotive') }}">Automotive Industry</a>
+                <a href="{{ route('industries.hospitality') }}">Hospitality Industry</a>
+                <a href="{{ route('industries.banks') }}">Banks Industry</a>
+                <a href="{{ route('industries.government') }}">Government & Public Sector</a>
+            </div>
 
+        </div>{{-- /.navbar-inner --}}
     </div>
 
 </header>
@@ -193,610 +134,376 @@ HEADER
 {{-- =========================================================
 CSS
 ========================================================= --}}
-
 <style>
 
-/* =========================================================
-RESET
-========================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-/* =========================================================
-BODY
-========================================================= */
-
-body{
-    background:#020817;
-    min-height:200vh;
-    font-family:Arial,sans-serif;
-}
-
-/* =========================================================
-HEADER
-========================================================= */
-
-.site-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:9999;
-}
-
-/* =========================================================
-TOP BAR
-========================================================= */
-
-.top-bar{
-    background:rgba(5,10,25,0.95);
-    padding:10px 0;
-}
-
-.topbar-wrapper{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-/* LEFT INFO */
-
-.left-info{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    flex-wrap:wrap;
-}
-
-.left-info a{
-    color:rgba(255,255,255,0.85);
-    text-decoration:none;
-    font-size:13px;
-}
-
-.left-info a i{
-    margin-right:6px;
-    color:#3b82f6;
-}
-
-/* SOCIAL */
-
-.social-icons{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.social-icons a{
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#ffffff;
-    text-decoration:none;
-    transition:.3s ease;
-}
-
-.social-icons a:hover{
-    background:#0d6efd;
-    transform:translateY(-2px);
-}
-/* =========================
-   NAVBAR
-========================= */
-
-.custom-navbar{
+/* ── Fixed header ── */
+.site-header {
+    position: fixed;
+    top: 0; left: 0;
     width: 100%;
-    padding: 12px 0;
+    z-index: 9999;
+}
+
+/* ══════════════════════
+   TOP BAR
+══════════════════════ */
+.top-bar {
+    background: rgba(4, 9, 22, 0.97);
+    padding: 9px 0;
+}
+.topbar-wrapper {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+}
+.left-info { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.left-info a {
+    color: rgba(255,255,255,0.80); text-decoration: none;
+    font-size: 13px; display: flex; align-items: center;
+    gap: 6px; transition: color .2s;
+}
+.left-info a:hover { color: #fff; }
+.left-info a i { color: #3b82f6; }
+
+.social-icons { display: flex; align-items: center; gap: 8px; }
+.social-icons a {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.10);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 13px; text-decoration: none;
+    transition: .25s ease;
+}
+.social-icons a:hover {
+    background: #0d6efd; border-color: #0d6efd;
+    transform: translateY(-2px);
+}
+
+/* ══════════════════════
+   NAVBAR SHELL
+   .navbar-inner is the
+   positioning parent for
+   the dd-panels
+══════════════════════ */
+.main-navbar {
+    width: 100%;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
-    position: relative;
-    z-index: 999;
+}
+.navbar-inner {
+    width: 90%;
+    max-width: 1900px;
+    position: relative;   /* ← anchor for .dd-panel */
 }
 
-/* MAIN CONTAINER */
-.nav-wrapper{
-    width: 95%;
-    max-width: 1250px;
-    background: rgba(8, 24, 74, 0.95);
-    border: 1px solid rgba(93, 141, 255, 0.45);
+/* ── Pill ── */
+.nav-pill {
+    width: 100%;
+    background: rgba(8, 24, 74, 0.97);
+    border: 1px solid rgba(93,141,255,0.40);
     border-radius: 60px;
-    padding: 6px 12px;
+    padding: 5px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
     position: relative;
-    overflow: visible;
+    z-index: 2;           /* above dd-panels */
     box-shadow:
-        0 0 0 1px rgba(255,255,255,0.04),
-        0 10px 40px rgba(0,0,0,0.35),
-        inset 0 0 20px rgba(255,255,255,0.02);
+        0 0 0 1px rgba(255,255,255,0.03),
+        0 8px 32px rgba(0,0,0,0.45),
+        inset 0 0 18px rgba(255,255,255,0.02);
 }
 
-/* NAV UL */
-.navbar-nav{
-    display: flex;
+/* Hamburger */
+.hamburger-btn {
+    display: none;
+    background: none; border: none;
+    color: #fff; font-size: 20px; cursor: pointer;
+    padding: 6px 10px; border-radius: 8px;
+    margin-left: auto; flex-shrink: 0;
+    transition: background .2s;
+}
+.hamburger-btn:hover { background: rgba(255,255,255,0.08); }
+
+/* ── Nav links list ── */
+.nav-links {
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    flex: 1;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
+    margin: 0; padding: 0;
+    gap: 2px;
 }
+.nav-links > li { list-style: none; position: relative; }
 
-/* NAV ITEM */
-.nav-item{
-    position: relative;
-}
-
-/* NAV LINK */
-.nav-link,
-.dropdown-toggle-custom{
-    height: 42px;
-    padding: 0 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
+.nav-link-item {
+    height: 40px;
+    padding: 0 13px;
+    display: flex; align-items: center; gap: 5px;
     color: #dbe7ff;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 14px; font-weight: 500;
     text-decoration: none;
-
     border-radius: 30px;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color .2s, background .2s;
+}
+.nav-link-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.nav-link-item.is-active {
+    background: linear-gradient(135deg, #4a63ff 0%, #192b9b 100%);
+    color: #fff;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.18), 0 4px 16px rgba(64,110,255,0.35);
 }
 
-/* HOVER */
-.nav-link:hover,
-.dropdown-toggle-custom:hover{
-    color: #ffffff;
-    background: rgba(255,255,255,0.05);
-}
+.chev { font-size: 10px; transition: transform .3s; }
+.has-dropdown.dd-open > a .chev { transform: rotate(180deg); }
 
-/* ACTIVE PILL */
-.active-link{
-    background: linear-gradient(
-        135deg,
-        #4a63ff 0%,
-        #192b9b 100%
-    );
+/* Mobile sub-menu (hidden on desktop) */
+.mobile-sub { display: none; }
 
-    color: #fff !important;
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.2),
-        0 6px 20px rgba(64,110,255,0.35);
-}
-
-/* ICON */
-.dropdown-toggle-custom i{
-    font-size: 11px;
-    transition: transform 0.3s ease;
-}
-
-/* ROTATE ICON */
-.dropdown-custom:hover i{
-    transform: rotate(180deg);
-}
-
-/* =========================
-   DROPDOWN
-========================= */
-
-.dropdown-custom{
-    position: relative;
-}
-
-/* DROPDOWN BOX */
-.dropdown-menu-custom{
-    min-width: 280px;
-
+/* ══════════════════════
+   DESKTOP DROPDOWN PANELS
+   Anchored to .navbar-inner
+   Sit below the pill, above
+   page content
+══════════════════════ */
+.dd-panel {
     position: absolute;
-    top: 115%;
-    left: 0;
-
-    background: rgba(10, 18, 56, 0.98);
-
-    border: 1px solid rgba(93,141,255,0.25);
-    border-radius: 18px;
-
-    padding: 10px;
-
+    top: calc(100% + 10px);  /* 2px gap below pill bottom */
+    left: 20px;
+    width: 95%;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 10px 2px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 22px 22px 22px 22px;
+    z-index: 1;             /* below pill (z-index:2) so pill overlaps top edge */
 
+    /* Hidden state */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(12px);
-
-    transition: all 0.3s ease;
-
-    box-shadow:
-        0 20px 40px rgba(0,0,0,0.4);
-
-    z-index: 100;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s;
 }
-
-/* SHOW DROPDOWN */
-.dropdown-custom:hover .dropdown-menu-custom{
+.dd-panel.dd-visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
 }
-
-/* DROPDOWN LINK */
-.dropdown-menu-custom a{
-    padding: 12px 14px;
-
-    color: #dbe7ff;
+.dd-panel a {
+    flex: 0 0 auto;
+    padding: 9px 16px;
+    color: rgba(255,255,255,0.88);
     text-decoration: none;
-    font-size: 14px;
-
-    border-radius: 12px;
-
-    transition: all 0.25s ease;
+    font-size: 13px; font-weight: 500;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background .2s, color .2s;
 }
-
-/* DROPDOWN HOVER */
-.dropdown-menu-custom a:hover{
-    background: rgba(70, 100, 255, 0.15);
-    color: #ffffff;
-    padding-left: 18px;
+.dd-panel a:hover { background: rgba(255,255,255,0.13); color: #fff; }
+.dd-panel a.is-active {
+    background: rgba(4,8,40,0.85);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff;
 }
+.dd-panel::-webkit-scrollbar { height: 3px; }
+.dd-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 20px; }
 
-/* =========================
-   GLOW EFFECT
-========================= */
+/* ══════════════════════
+   MOBILE ≤ 1199px
+══════════════════════ */
+@media (max-width: 1199px) {
 
-.nav-wrapper::before{
-    content: '';
+    .main-navbar { padding: 8px 0 10px; }
 
-    position: absolute;
-    inset: 0;
-
-    border-radius: 60px;
-
-    padding: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.08),
-            rgba(91,124,255,0.35),
-            rgba(255,255,255,0.08)
-        );
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-
-    pointer-events: none;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width: 1200px){
-
-    .navbar-nav{
-        gap: 2px;
+    .nav-pill {
         flex-wrap: wrap;
-        justify-content: center;
+        border-radius: 20px;
+        padding: 10px 14px;
     }
+    .nav-logo { flex: 1; }
+    .hamburger-btn { display: flex !important; }
 
-    .nav-link,
-    .dropdown-toggle-custom{
-        font-size: 13px;
-        padding: 0 14px;
+    /* Hide desktop list, show on .open */
+    .nav-links {
+        display: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        flex: none;
+        width: 100%;
+        gap: 2px;
+        padding: 10px 0 4px;
     }
+    .nav-links.open { display: flex !important; }
 
-}
-
-@media(max-width: 768px){
-
-    .nav-wrapper{
-        border-radius: 24px;
-        padding: 14px;
-    }
-
-    .navbar-nav{
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .nav-link,
-    .dropdown-toggle-custom{
+    .nav-link-item {
         width: 100%;
         justify-content: space-between;
+        height: auto; padding: 12px 14px;
+        border-radius: 12px;
     }
 
-    .dropdown-menu-custom{
-        position: relative;
-        top: 0;
-        margin-top: 10px;
-        width: 100%;
+    /* Desktop panels hidden on mobile */
+    .dd-panel { display: none !important; }
+
+    /* Mobile sub-menu */
+    .mobile-sub {
+        list-style: none;
+        margin: 0; padding: 4px 0 4px 12px;
+        display: none;
+        flex-direction: column;
+        gap: 2px;
     }
-
-}
-@media(max-width:1199px){
-
-    .navbar-custom{
-        border-radius:24px;
-        padding:18px;
+    .mobile-sub.open { display: flex; }
+    .mobile-sub li { list-style: none; }
+    .mobile-sub a {
+        display: block;
+        padding: 9px 14px;
+        color: rgba(255,255,255,0.82);
+        text-decoration: none;
+        font-size: 13px; font-weight: 500;
+        border-radius: 10px;
+        transition: background .2s;
     }
-
-    .navbar-collapse{
-        margin-top:18px;
-    }
-
-    .nav-pill-bg{
-        display:none;
-    }
-
-    .navbar-nav{
-        flex-direction:column;
-        align-items:stretch;
-        padding:0;
-    }
-
-    .navbar-custom .nav-link,
-    .dropdown-toggle-custom{
-        width:100%;
-        border-radius:12px !important;
-        padding:14px 16px !important;
-
-        display:flex !important;
-        align-items:center;
-        justify-content:space-between;
-    }
-
-    /* MOBILE DROPDOWN */
-
-    .dropdown-menu-custom,
-    .dropdown-menu-custom-ind{
-
-        position:relative;
-        top:auto;
-        left:auto;
-
-        width:100%;
-        min-width:100%;
-
-        margin-top:6px;
-
-        display:none;
-
-        opacity:1 !important;
-        visibility:visible !important;
-        transform:none !important;
-
-        box-shadow:none;
-
-        border:1px solid rgba(255,255,255,0.06);
-    }
-
-    .dropdown-custom.active .dropdown-menu-custom,
-    .dropdown-custom.active .dropdown-menu-custom-ind{
-        display:block;
-    }
+    .mobile-sub a:hover,
+    .mobile-sub a.is-active { background: rgba(255,255,255,0.10); color: #fff; }
 }
 
-/* =========================================================
-MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-    .topbar-wrapper{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .left-info{
-        justify-content:center;
-        gap:10px;
-    }
-
-    .social-icons{
-        justify-content:center;
-    }
-
-    .navbar-custom{
-        width:94%;
-    }
+@media (max-width: 768px) {
+    .topbar-wrapper { flex-direction: column; text-align: center; }
+    .left-info { justify-content: center; gap: 8px; }
+    .social-icons { justify-content: center; }
 }
-
 </style>
 
-{{-- =========================================================
-BOOTSTRAP JS
-========================================================= --}}
-
+{{-- Bootstrap JS --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-{{-- =========================================================
-CUSTOM JS
-========================================================= --}}
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const nav = document.getElementById("mainNav");
-    const pill = document.querySelector(".nav-pill-bg");
+    const MOBILE_BP = 1199;
+    const isMobile  = () => window.innerWidth <= MOBILE_BP;
 
-    const navLinks = document.querySelectorAll(
-        "#mainNav .nav-link, #mainNav .dropdown-toggle-custom"
-    );
+    /* ─────────────────────────────────
+       Collect dropdown triggers
+    ───────────────────────────────── */
+    const dropdownItems = document.querySelectorAll('.has-dropdown');
+    let hideTimers = {};
 
-    const dropdowns = document.querySelectorAll(".dropdown-custom");
+    dropdownItems.forEach(item => {
+        const panelId = item.dataset.panel;
+        const panel   = panelId ? document.getElementById(panelId) : null;
 
-    /* =====================================================
-       CHECK DESKTOP
-    ===================================================== */
-
-    function isDesktop() {
-        return window.innerWidth > 1199;
-    }
-
-    /* =====================================================
-       MOVE PILL
-    ===================================================== */
-
-    function movePillTo(element) {
-
-        if (!pill || !isDesktop()) return;
-
-        const navRect = nav.getBoundingClientRect();
-        const rect = element.getBoundingClientRect();
-
-        pill.style.width = rect.width + "px";
-        pill.style.height = rect.height + "px";
-
-        pill.style.left =
-            (rect.left - navRect.left) + "px";
-
-        pill.style.top =
-            (rect.top - navRect.top) + "px";
-
-        pill.style.opacity = "1";
-    }
-
-    /* =====================================================
-       SET DEFAULT ACTIVE
-    ===================================================== */
-
-    const activeLink = document.querySelector(".active-link");
-
-    if (activeLink && isDesktop()) {
-        movePillTo(activeLink);
-    }
-
-    /* =====================================================
-       HOVER EFFECT
-    ===================================================== */
-
-    navLinks.forEach(link => {
-
-        link.addEventListener("mouseenter", () => {
-
-            if (isDesktop()) {
-                movePillTo(link);
-            }
-
-        });
-
-    });
-
-    /* =====================================================
-       RESET TO ACTIVE
-    ===================================================== */
-
-    nav.addEventListener("mouseleave", () => {
-
-        if (activeLink && isDesktop()) {
-            movePillTo(activeLink);
-        } else {
-            pill.style.opacity = "0";
-        }
-
-    });
-
-    /* =====================================================
-       DESKTOP DROPDOWN
-    ===================================================== */
-
-    dropdowns.forEach(dropdown => {
-
-        dropdown.addEventListener("mouseenter", () => {
-
-            if (isDesktop()) {
-                dropdown.classList.add("show-dropdown");
-            }
-
-        });
-
-        dropdown.addEventListener("mouseleave", () => {
-
-            if (isDesktop()) {
-                dropdown.classList.remove("show-dropdown");
-            }
-
-        });
-
-    });
-
-    /* =====================================================
-       MOBILE DROPDOWN
-    ===================================================== */
-
-    const toggles = document.querySelectorAll(
-        ".dropdown-toggle-custom"
-    );
-
-    toggles.forEach(toggle => {
-
-        toggle.addEventListener("click", function(e) {
-
-            if (!isDesktop()) {
-
-                e.preventDefault();
-
-                const parent =
-                    this.closest(".dropdown-custom");
-
-                dropdowns.forEach(item => {
-
-                    if (item !== parent) {
-                        item.classList.remove("active");
-                    }
-
-                });
-
-                parent.classList.toggle("active");
-
-            }
-
-        });
-
-    });
-
-    /* =====================================================
-       WINDOW RESIZE
-    ===================================================== */
-
-    window.addEventListener("resize", () => {
-
-        if (isDesktop()) {
-
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove("active");
+        /* ── Desktop: hover ── */
+        item.addEventListener('mouseenter', () => {
+            if (isMobile() || !panel) return;
+            clearTimeout(hideTimers[panelId]);
+            // Close others
+            dropdownItems.forEach(other => {
+                const otherId = other.dataset.panel;
+                if (otherId !== panelId) {
+                    const otherPanel = document.getElementById(otherId);
+                    if (otherPanel) otherPanel.classList.remove('dd-visible');
+                    other.classList.remove('dd-open');
+                }
             });
+            item.classList.add('dd-open');
+            panel.classList.add('dd-visible');
+        });
 
-            if (activeLink) {
-                movePillTo(activeLink);
-            }
+        item.addEventListener('mouseleave', () => {
+            if (isMobile() || !panel) return;
+            hideTimers[panelId] = setTimeout(() => {
+                item.classList.remove('dd-open');
+                panel.classList.remove('dd-visible');
+            }, 150);
+        });
 
-        } else {
-
-            pill.style.opacity = "0";
-
+        if (panel) {
+            panel.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimers[panelId]);
+            });
+            panel.addEventListener('mouseleave', () => {
+                hideTimers[panelId] = setTimeout(() => {
+                    item.classList.remove('dd-open');
+                    panel.classList.remove('dd-visible');
+                }, 150);
+            });
         }
 
+        /* ── Mobile: click ── */
+        const link = item.querySelector('.nav-link-item');
+        const sub  = item.querySelector('.mobile-sub');
+        if (link && sub) {
+            link.addEventListener('click', (e) => {
+                if (!isMobile()) return;
+                e.preventDefault();
+                // Close others
+                dropdownItems.forEach(other => {
+                    if (other !== item) {
+                        const otherSub = other.querySelector('.mobile-sub');
+                        if (otherSub) otherSub.classList.remove('open');
+                        other.classList.remove('dd-open');
+                    }
+                });
+                sub.classList.toggle('open');
+                item.classList.toggle('dd-open');
+            });
+        }
+    });
+
+    /* Close desktop dropdowns on outside click */
+    document.addEventListener('click', (e) => {
+        if (isMobile()) return;
+        if (!document.querySelector('.site-header').contains(e.target)) {
+            dropdownItems.forEach(item => {
+                item.classList.remove('dd-open');
+                const p = document.getElementById(item.dataset.panel);
+                if (p) p.classList.remove('dd-visible');
+            });
+        }
+    });
+
+    /* ─────────────────────────────────
+       Hamburger
+    ───────────────────────────────── */
+    const btn     = document.getElementById('hamburgerBtn');
+    const navList = document.getElementById('navLinks');
+
+    if (btn && navList) {
+        btn.addEventListener('click', () => {
+            navList.classList.toggle('open');
+            const open = navList.classList.contains('open');
+            btn.innerHTML = open
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        });
+    }
+
+    /* Close mobile nav on outside click */
+    document.addEventListener('click', (e) => {
+        if (!isMobile()) return;
+        if (!document.querySelector('.site-header').contains(e.target)) {
+            navList && navList.classList.remove('open');
+            btn && (btn.innerHTML = '<i class="fa-solid fa-bars"></i>');
+        }
     });
 
 });

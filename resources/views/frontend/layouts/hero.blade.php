@@ -4,17 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 $routeName = Route::currentRouteName();
 
-/*
-|--------------------------------------------------------------------------
-| MAP ROUTE => HERO SECTION KEY
-|--------------------------------------------------------------------------
-*/
 $sectionKey = match ($routeName) {
 
-    // HOME
     'home' => 'hero',
 
-    // MAIN PAGES
     'contact' => 'contact',
     'insights' => 'insights',
     'why-led-media' => 'why_led_media',
@@ -24,7 +17,10 @@ $sectionKey = match ($routeName) {
     'solutions.outdoor-billboards' => 'solution_outdoor_billboards',
     'solutions.indoor-commercial' => 'solution_indoor_commercial',
     'solutions.fine-pixel' => 'solution_fine_pixel',
-    'solutions.meeting-room' => 'solution_fine_pixel',
+
+    // FIXED
+    'solutions.meeting-room' => 'solution_meeting_room',
+
     'solutions.retail' => 'solution_retail',
     'solutions.control-systems' => 'solution_control_systems',
     'solutions.installation' => 'solution_installation',
@@ -42,45 +38,35 @@ $sectionKey = match ($routeName) {
     default => 'hero'
 };
 
-/*
-|--------------------------------------------------------------------------
-| LOAD HERO DATA
-|--------------------------------------------------------------------------
-*/
-
 $hero = \App\Models\HomePageSection::where('section_key', $sectionKey)
             ->where('status', 1)
             ->first();
 
-/*
-|--------------------------------------------------------------------------
-| BACKGROUND IMAGES
-|--------------------------------------------------------------------------
-*/
-
-$bgImage = !empty($hero?->image)
-    ? asset('storage/' . $hero->image)
-    : asset('image/home_page_bg1.png');
-
-$overlayImage = !empty($hero?->background_image)
+$bgImage = $hero?->background_image
     ? asset('storage/' . $hero->background_image)
-    : asset('image/home_page_bg2.png');
+    : asset('storage/image/home_page_bg1.png');
+
+$overlayImage = asset('storage/image/home_page_bg2.png');
 
 @endphp
-
-
 <section class="hero-section">
 
-    {{-- MAIN BACKGROUND --}}
+    {{-- BACKGROUND --}}
     <div class="hero-bg-image"
          style="
             background-image:
-            linear-gradient(rgba(2,6,23,.72), rgba(2,6,23,.90)),
+            linear-gradient(
+                rgba(2,6,23,.78),
+                rgba(2,6,23,.92)
+            ),
             url('{{ $bgImage }}');
          ">
     </div>
 
-    {{-- OVERLAY IMAGE --}}
+    {{-- PARTICLES --}}
+    <div class="hero-particles"></div>
+
+    {{-- OVERLAY --}}
     <div class="hero-overlay"
          style="
             background-image:
@@ -88,27 +74,27 @@ $overlayImage = !empty($hero?->background_image)
          ">
     </div>
 
-    {{-- BLUE GLOW --}}
+    {{-- BLUE LIGHT --}}
     <div class="hero-glow"></div>
 
-    {{-- HERO CONTENT --}}
+    {{-- DIAGONAL LIGHT --}}
+    <div class="hero-diagonal"></div>
+
+    {{-- CONTENT --}}
     <div class="hero-content">
 
-        {{-- SUBTITLE --}}
         @if(!empty($hero?->subtitle))
             <h4 class="hero-subtitle">
                 {{ $hero->subtitle }}
             </h4>
         @endif
 
-        {{-- TITLE --}}
         @if(!empty($hero?->title))
             <h1 class="hero-title">
                 {{ $hero->title }}
             </h1>
         @endif
 
-        {{-- DESCRIPTION --}}
         @if(!empty($hero?->content))
             <p class="hero-text">
                 {{ $hero->content }}
@@ -116,37 +102,32 @@ $overlayImage = !empty($hero?->background_image)
         @endif
 
         {{-- BUTTONS --}}
-        @if(!empty($hero?->button_text) || !empty($hero?->secondary_button_text))
+        <div class="hero-buttons">
 
-            <div class="hero-buttons">
+            @if($hero?->button_text)
+                <a href="{{ $hero->button_link ?? '#' }}"
+                   class="btn-primary-custom">
 
-                {{-- PRIMARY BUTTON --}}
-                @if(!empty($hero?->button_text))
-                    <a href="{{ $hero->button_link ?? '#' }}"
-                       class="btn-primary-custom">
+                    {{ $hero->button_text }}
 
-                        {{ $hero->button_text }}
+                </a>
+            @endif
 
-                    </a>
-                @endif
+            @if($hero?->secondary_button_text)
+                <a href="{{ $hero->secondary_button_link ?? '#' }}"
+                   class="btn-dark-custom">
 
-                {{-- SECONDARY BUTTON --}}
-                @if(!empty($hero?->secondary_button_text))
-                    <a href="{{ $hero->secondary_button_link ?? '#' }}"
-                       class="btn-dark-custom">
+                    {{ $hero->secondary_button_text }}
 
-                        {{ $hero->secondary_button_text }}
+                </a>
+            @endif
 
-                    </a>
-                @endif
-
-            </div>
-
-        @endif
+        </div>
 
     </div>
 
 </section>
+
 
 
 <style>
@@ -159,7 +140,7 @@ $overlayImage = !empty($hero?->background_image)
 
     position: relative;
 
-    min-height: 92vh;
+    min-height: 100vh;
 
     display: flex;
     align-items: center;
@@ -169,16 +150,15 @@ $overlayImage = !empty($hero?->background_image)
 
     overflow: hidden;
 
-    padding: 150px 20px 90px;
+    padding: 160px 20px 100px;
 
     background: #020617;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.04);
 }
 
 
-/* CINEMATIC FADE */
+/* =========================================================
+   BOTTOM FADE
+========================================================= */
 
 .hero-section::after{
 
@@ -190,21 +170,21 @@ $overlayImage = !empty($hero?->background_image)
     bottom: 0;
 
     width: 100%;
-    height: 180px;
+    height: 240px;
 
     background:
         linear-gradient(
             to bottom,
             transparent,
-            #000000
+            rgba(0,0,0,.95)
         );
 
-    z-index: 4;
+    z-index: 10;
 }
 
 
 /* =========================================================
-   MAIN BACKGROUND IMAGE
+   BACKGROUND IMAGE
 ========================================================= */
 
 .hero-bg-image{
@@ -216,12 +196,41 @@ $overlayImage = !empty($hero?->background_image)
     background-position: center;
     background-repeat: no-repeat;
 
+    transform: scale(1.03);
+
+    filter:
+        saturate(1.05)
+        brightness(.85);
+
     z-index: 1;
 }
 
 
 /* =========================================================
-   SECOND OVERLAY IMAGE
+   PARTICLES
+========================================================= */
+
+.hero-particles{
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            rgba(255,255,255,.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+
+    opacity: .15;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   OVERLAY IMAGE
 ========================================================= */
 
 .hero-overlay{
@@ -235,9 +244,9 @@ $overlayImage = !empty($hero?->background_image)
 
     mix-blend-mode: screen;
 
-    opacity: .50;
+    opacity: .45;
 
-    z-index: 2;
+    z-index: 3;
 }
 
 
@@ -249,29 +258,50 @@ $overlayImage = !empty($hero?->background_image)
 
     position: absolute;
 
-    width: 760px;
-    height: 760px;
+    width: 1000px;
+    height: 1000px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(0,102,255,.42) 0%,
-            rgba(0,102,255,.14) 42%,
+            rgba(37,99,235,.55) 0%,
+            rgba(59,130,246,.18) 35%,
             transparent 72%
         );
 
-    top: 42%;
-    left: 50%;
+    top: 50%;
+    left: 38%;
 
     transform: translate(-50%, -50%);
 
-    filter: blur(80px);
+    filter: blur(90px);
 
-    opacity: .9;
+    opacity: .95;
 
-    z-index: 3;
+    z-index: 4;
+}
+
+
+/* =========================================================
+   DIAGONAL LIGHT
+========================================================= */
+
+.hero-diagonal{
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(0,87,255,.40) 0%,
+            rgba(0,87,255,.12) 35%,
+            transparent 65%
+        );
+
+    z-index: 5;
 }
 
 
@@ -283,13 +313,15 @@ $overlayImage = !empty($hero?->background_image)
 
     position: relative;
 
-    z-index: 10;
+    z-index: 20;
 
-    max-width: 820px;
+    max-width: 900px;
 }
 
 
-/* BACKDROP FOR TEXT */
+/* =========================================================
+   CONTENT BACKDROP
+========================================================= */
 
 .hero-content::before{
 
@@ -297,13 +329,13 @@ $overlayImage = !empty($hero?->background_image)
 
     position: absolute;
 
-    inset: -40px;
+    inset: -60px;
 
     background:
         radial-gradient(
             circle,
-            rgba(0,0,0,.38),
-            transparent 75%
+            rgba(0,0,0,.45),
+            transparent 72%
         );
 
     z-index: -1;
@@ -316,16 +348,16 @@ $overlayImage = !empty($hero?->background_image)
 
 .hero-subtitle{
 
-    color: #ffffff;
+    color: #dbeafe;
 
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
 
-    letter-spacing: 6px;
+    letter-spacing: 7px;
 
     text-transform: uppercase;
 
-    margin-bottom: 26px;
+    margin-bottom: 24px;
 
     opacity: .95;
 }
@@ -339,14 +371,17 @@ $overlayImage = !empty($hero?->background_image)
 
     color: #ffffff;
 
-    font-size: 64px;
+    font-size: 72px;
     font-weight: 700;
 
-    line-height: 1.08;
+    line-height: 1.05;
 
-    letter-spacing: -1px;
+    letter-spacing: -2px;
 
-    margin-bottom: 28px;
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 10px 40px rgba(0,0,0,.45);
 
     text-wrap: balance;
 }
@@ -358,13 +393,13 @@ $overlayImage = !empty($hero?->background_image)
 
 .hero-text{
 
-    color: rgba(255,255,255,.82);
+    color: rgba(255,255,255,.78);
 
-    font-size: 16px;
+    font-size: 17px;
 
     line-height: 1.9;
 
-    max-width: 620px;
+    max-width: 720px;
 
     margin:
         auto auto 45px;
@@ -387,16 +422,18 @@ $overlayImage = !empty($hero?->background_image)
 }
 
 
-/* BUTTON BASE */
+/* =========================================================
+   BUTTON BASE
+========================================================= */
 
 .btn-primary-custom,
 .btn-dark-custom{
 
     min-width: 220px;
 
-    height: 56px;
+    height: 58px;
 
-    border-radius: 60px;
+    border-radius: 999px;
 
     display: flex;
 
@@ -416,47 +453,53 @@ $overlayImage = !empty($hero?->background_image)
 }
 
 
-/* PRIMARY BUTTON */
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
 
 .btn-primary-custom{
 
     background:
         linear-gradient(
             135deg,
-            #0057ff,
+            #2563eb,
             #3b82f6
         );
 
     box-shadow:
-        0 10px 25px rgba(0,102,255,.28);
+        0 10px 30px rgba(37,99,235,.45);
 }
 
 
-/* DARK BUTTON */
+/* =========================================================
+   DARK BUTTON
+========================================================= */
 
 .btn-dark-custom{
 
     background:
-        rgba(20,20,30,.55);
+        rgba(15,23,42,.45);
 
     border:
         1px solid rgba(255,255,255,.10);
 
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(18px);
 }
 
 
-/* HOVER */
+/* =========================================================
+   HOVER
+========================================================= */
 
 .btn-primary-custom:hover,
 .btn-dark-custom:hover{
 
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 
     color: #ffffff;
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,.25);
+        0 18px 40px rgba(0,0,0,.30);
 }
 
 
@@ -468,19 +511,12 @@ $overlayImage = !empty($hero?->background_image)
 
     .hero-section{
 
-        min-height: auto;
-
         padding: 180px 20px 110px;
-    }
-
-    .hero-content{
-
-        max-width: 100%;
     }
 
     .hero-title{
 
-        font-size: 46px;
+        font-size: 50px;
     }
 
     .hero-text{
@@ -490,8 +526,8 @@ $overlayImage = !empty($hero?->background_image)
 
     .hero-glow{
 
-        width: 620px;
-        height: 620px;
+        width: 700px;
+        height: 700px;
     }
 }
 
@@ -500,21 +536,21 @@ $overlayImage = !empty($hero?->background_image)
 
     .hero-section{
 
-        padding: 170px 18px 90px;
+        padding: 160px 18px 90px;
     }
 
     .hero-subtitle{
 
-        font-size: 13px;
+        font-size: 12px;
 
         letter-spacing: 4px;
     }
 
     .hero-title{
 
-        font-size: 34px;
+        font-size: 36px;
 
-        line-height: 1.18;
+        line-height: 1.15;
     }
 
     .hero-text{
@@ -539,8 +575,8 @@ $overlayImage = !empty($hero?->background_image)
 
     .hero-glow{
 
-        width: 460px;
-        height: 460px;
+        width: 500px;
+        height: 500px;
 
         filter: blur(100px);
     }

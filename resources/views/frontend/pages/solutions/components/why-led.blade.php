@@ -1,36 +1,37 @@
-<section class="led-usage-benefits">
-    <!-- BOTTOM -->
-    <div class="led-benefits-row">
+@if(isset($solution))
 
-        <div class="led-container led-benefits-grid">
+<section class="why-led-section">
 
-            <!-- LEFT -->
-            <div class="led-benefits-image-card">
+    <div class="container">
 
-                <img src="images/benefits.jpg"
-                     alt="Benefits">
+        <div class="why-led-grid">
+
+            <!-- BENEFITS -->
+            <div class="why-led-benefits">
+
+                <h2>Benefits</h2>
+
+                <ul>
+                    @forelse($solution->benefits as $benefit)
+                        <li>{{ $benefit->title }}</li>
+                    @empty
+                        <li>No benefits listed.</li>
+                    @endforelse
+                </ul>
 
             </div>
 
-            <!-- RIGHT -->
-            <div class="led-benefits-content">
+            <!-- USES -->
+            <div class="why-led-uses">
 
-                <h2>
-                    Benefits
-                </h2>
+                <h2>Where It Is Used</h2>
 
                 <ul>
-
-                    <li>High visibility day and night</li>
-
-                    <li>Weather-resistant performance</li>
-
-                    <li>Dynamic advertising capability</li>
-
-                    <li>Long-term operational durability</li>
-
-                    <li>Strong branding and audience engagement</li>
-
+                    @forelse($solution->uses as $use)
+                        <li>{{ $use->title }}</li>
+                    @empty
+                        <li>No uses listed.</li>
+                    @endforelse
                 </ul>
 
             </div>
@@ -40,6 +41,8 @@
     </div>
 
 </section>
+
+@endif
 
 <style>
 .led-usage-benefits {
