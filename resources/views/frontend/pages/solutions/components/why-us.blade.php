@@ -12,19 +12,47 @@ WHY LED MEDIA HERO SECTION
 
         <div class="hero-content">
 
-            <h1>
-                {{ $whyLed->title }}
-            </h1>
+            @if($whyLed->title)
+                <h1>{{ $whyLed->title }}</h1>
+            @endif
 
-            <p>
-                {{ $whyLed->description }}
-            </p>
+            @if($whyLed->description)
+                <p>{{ $whyLed->description }}</p>
+            @endif
 
         </div>
 
     </div>
 
 </section>
+
+{{-- =========================================================
+INDUSTRY INTRO SECTION (only on industry pages)
+========================================================= --}}
+
+@if($whyLed->industry_name || $whyLed->industry_description)
+
+<section class="industry-intro">
+
+    <div class="container">
+
+        <div class="industry-intro-content">
+
+            @if($whyLed->industry_name)
+                <h2>{{ $whyLed->industry_name }}</h2>
+            @endif
+
+            @if($whyLed->industry_description)
+                <p>{{ $whyLed->industry_description }}</p>
+            @endif
+
+        </div>
+
+    </div>
+
+</section>
+
+@endif
 
 {{-- =========================================================
 CSS
@@ -36,11 +64,12 @@ CSS
 WHY LED HERO
 ========================================================= */
 
-.why-led-hero{
+.why-led-hero {
     position: relative;
 
     width: 100%;
-    min-height: 280px;
+    min-height: 180px;
+
 
     display: flex;
     align-items: center;
@@ -50,17 +79,16 @@ WHY LED HERO
 
     padding: 100px 20px;
 
-    background:
-        linear-gradient(
-            90deg,
-            #0018ff 0%,
-            #1427ff 20%,
-            #273bff 40%,
-            #4d5eff 50%,
-            #273bff 60%,
-            #1427ff 80%,
-            #0018ff 100%
-        );
+    background: linear-gradient(
+        90deg,
+        #0018ff 0%,
+        #1427ff 20%,
+        #273bff 40%,
+        #4d5eff 50%,
+        #273bff 60%,
+        #1427ff 80%,
+        #0018ff 100%
+    );
 
     isolation: isolate;
 }
@@ -69,20 +97,19 @@ WHY LED HERO
 VERTICAL LIGHT EFFECT
 ========================================================= */
 
-.why-led-hero::before{
+.why-led-hero::before {
     content: '';
 
     position: absolute;
     inset: 0;
 
-    background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.12) 0px,
-            rgba(255,255,255,0.12) 2px,
-            transparent 2px,
-            transparent 8px
-        );
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.12) 0px,
+        rgba(255,255,255,0.12) 2px,
+        transparent 2px,
+        transparent 8px
+    );
 
     opacity: 0.35;
 
@@ -93,25 +120,24 @@ VERTICAL LIGHT EFFECT
 DARK OVERLAY
 ========================================================= */
 
-.hero-overlay{
+.hero-overlay {
     position: absolute;
     inset: 0;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,0.08),
-            rgba(0,0,0,0.25)
-        );
+    background: radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.08),
+        rgba(0,0,0,0.25)
+    );
 
     z-index: 2;
 }
 
 /* =========================================================
-CONTENT
+HERO CONTENT
 ========================================================= */
 
-.hero-content{
+.hero-content {
     position: relative;
     z-index: 3;
 
@@ -122,9 +148,7 @@ CONTENT
     text-align: center;
 }
 
-/* TITLE */
-
-.hero-content h1{
+.hero-content h1 {
     color: #ffffff;
 
     font-size: 46px;
@@ -135,9 +159,7 @@ CONTENT
     letter-spacing: 0.5px;
 }
 
-/* DESCRIPTION */
-
-.hero-content p{
+.hero-content p {
     color: rgba(255,255,255,0.92);
 
     font-size: 18px;
@@ -149,40 +171,108 @@ CONTENT
 }
 
 /* =========================================================
+INDUSTRY INTRO
+========================================================= */
+
+.industry-intro {
+    width: 100%;
+
+    padding: 70px 20px;
+
+    background: #ffffff;
+}
+
+.industry-intro-content {
+    max-width: 900px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.industry-intro-content h2 {
+    color: #0018ff;
+
+    font-size: 32px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+
+    letter-spacing: 0.3px;
+}
+
+.industry-intro-content p {
+    color: #444444;
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    margin: 0;
+
+    font-weight: 300;
+}
+
+/* =========================================================
 RESPONSIVE
 ========================================================= */
 
-@media(max-width: 992px){
+@media (max-width: 992px) {
 
-    .why-led-hero{
+    .why-led-hero {
         min-height: 240px;
         padding: 80px 20px;
     }
 
-    .hero-content h1{
+    .hero-content h1 {
         font-size: 36px;
     }
 
-    .hero-content p{
+    .hero-content p {
         font-size: 16px;
         line-height: 1.7;
     }
 
+    .industry-intro {
+        padding: 55px 20px;
+    }
+
+    .industry-intro-content h2 {
+        font-size: 26px;
+    }
+
+    .industry-intro-content p {
+        font-size: 16px;
+    }
+
 }
 
-@media(max-width: 576px){
+@media (max-width: 576px) {
 
-    .why-led-hero{
+    .why-led-hero {
         min-height: 220px;
         padding: 70px 15px;
     }
 
-    .hero-content h1{
+    .hero-content h1 {
         font-size: 30px;
         margin-bottom: 20px;
     }
 
-    .hero-content p{
+    .hero-content p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .industry-intro {
+        padding: 45px 15px;
+    }
+
+    .industry-intro-content h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .industry-intro-content p {
         font-size: 15px;
         line-height: 1.6;
     }

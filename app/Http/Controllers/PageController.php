@@ -1,4 +1,5 @@
 <?php
+// app/Http/Controllers/PageController.php
 
 namespace App\Http\Controllers;
 
@@ -6,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomePageSection;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\WhyLedMedia;
 
 class PageController extends Controller
 {
@@ -16,14 +18,11 @@ class PageController extends Controller
     */
 
     private array $heroKeys = [
-        // Main pages
         'contact'                      => 'contact_hero',
         'insights'                     => 'insights_hero',
         'why-led-media'                => 'why_led_hero',
         'services.index'               => 'services_hero',
         'projects.index'               => 'projects_hero',
-
-        // Solutions
         'solutions.outdoor-billboards' => 'solutions_outdoor_billboards',
         'solutions.indoor-commercial'  => 'solutions_indoor_commercial',
         'solutions.fine-pixel'         => 'solutions_fine_pixel',
@@ -31,8 +30,6 @@ class PageController extends Controller
         'solutions.retail'             => 'solutions_retail',
         'solutions.control-systems'    => 'solutions_control_systems',
         'solutions.installation'       => 'solutions_installation',
-
-        // Industries
         'industries.outdoorAd'         => 'industry_outdoor_advertising',
         'industries.retail'            => 'industry_retail_showroom',
         'industries.corporate'         => 'industry_corporate_office',
@@ -44,13 +41,10 @@ class PageController extends Controller
     ];
 
     private array $aboutKeys = [
-        // Main pages
         'why-led-media'                => 'about_why_led_media',
         'insights'                     => 'about_insights',
         'contact'                      => 'about_contact',
         'projects.index'               => 'about_projects',
-
-        // Solutions
         'solutions.outdoor-billboards' => 'about_outdoor_billboards',
         'solutions.indoor-commercial'  => 'about_indoor_commercial',
         'solutions.fine-pixel'         => 'about_fine_pixel',
@@ -58,8 +52,6 @@ class PageController extends Controller
         'solutions.retail'             => 'about_retail_showroom',
         'solutions.control-systems'    => 'about_control_systems',
         'solutions.installation'       => 'about_installation',
-
-        // Industries
         'industries.outdoorAd'         => 'about_industry_outdoor_advertising',
         'industries.retail'            => 'about_industry_retail',
         'industries.corporate'         => 'about_industry_corporate',
@@ -72,7 +64,7 @@ class PageController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | SHARED DATA LOADER
+    | PRIVATE HELPERS
     |--------------------------------------------------------------------------
     */
 
@@ -90,17 +82,25 @@ class PageController extends Controller
                 ->keyBy('section_key')
             : collect();
 
-        $featuredProjects = Project::where('status', 1)
-            ->where('is_featured', 1)
-            ->latest()
-            ->take(6)
-            ->get();
-
         return [
             'hero'             => $heroKey  ? $sections->get($heroKey)  : null,
             'about'            => $aboutKey ? $sections->get($aboutKey) : null,
-            'featuredProjects' => $featuredProjects,
+            'featuredProjects' => $this->getFeaturedProjects(),
         ];
+    }
+
+    private function getFeaturedProjects()
+    {
+        return Project::where('status', 1)
+            ->where('is_featured', 1)
+            ->orderBy('created_at', 'desc')
+            ->limit(6)
+            ->get();
+    }
+
+    private function getWhyLed(string $slug): WhyLedMedia
+    {
+        return WhyLedMedia::forPage($slug);
     }
 
     /*
@@ -156,50 +156,66 @@ class PageController extends Controller
 
     public function outdoorAd()
     {
-        return view('frontend.pages.industry.outdoorAd',
-            $this->getSharedData('industries.outdoorAd'));
+        $data           = $this->getSharedData('industries.outdoorAd');
+        $data['whyLed'] = $this->getWhyLed('outdoor-advertising-industry');
+
+        return view('frontend.pages.industry.outdoorAd', $data);
     }
 
     public function retail()
     {
-        return view('frontend.pages.industry.retail',
-            $this->getSharedData('industries.retail'));
+        $data           = $this->getSharedData('industries.retail');
+        $data['whyLed'] = $this->getWhyLed('retail-showroom-industry');
+
+        return view('frontend.pages.industry.retail', $data);
     }
 
     public function corporate()
     {
-        return view('frontend.pages.industry.corporate',
-            $this->getSharedData('industries.corporate'));
+        $data           = $this->getSharedData('industries.corporate');
+        $data['whyLed'] = $this->getWhyLed('corporate-offices-industry');
+
+        return view('frontend.pages.industry.corporate', $data);
     }
 
     public function developers()
     {
-        return view('frontend.pages.industry.developers',
-            $this->getSharedData('industries.developers'));
+        $data           = $this->getSharedData('industries.developers');
+        $data['whyLed'] = $this->getWhyLed('developers-commercial-buildings-industry');
+
+        return view('frontend.pages.industry.developers', $data);
     }
 
     public function automotive()
     {
-        return view('frontend.pages.industry.automotive',
-            $this->getSharedData('industries.automotive'));
+        $data           = $this->getSharedData('industries.automotive');
+        $data['whyLed'] = $this->getWhyLed('automotive-industry');
+
+        return view('frontend.pages.industry.automotive', $data);
     }
 
     public function hospitality()
     {
-        return view('frontend.pages.industry.hospitality',
-            $this->getSharedData('industries.hospitality'));
+        $data           = $this->getSharedData('industries.hospitality');
+        $data['whyLed'] = $this->getWhyLed('hospitality-industry');
+
+        return view('frontend.pages.industry.hospitality', $data);
     }
 
     public function banks()
     {
-        return view('frontend.pages.industry.banks',
-            $this->getSharedData('industries.banks'));
+        $data           = $this->getSharedData('industries.banks');
+        $data['whyLed'] = $this->getWhyLed('banks-financial-institutions-industry');
+
+        return view('frontend.pages.industry.banks', $data);
     }
 
     public function government()
     {
-        return view('frontend.pages.industry.government',
-            $this->getSharedData('industries.government'));
+        $data           = $this->getSharedData('industries.government');
+        $data['whyLed'] = $this->getWhyLed('government-public-sector-industry');
+
+        return view('frontend.pages.industry.government', $data);
     }
 
     /*

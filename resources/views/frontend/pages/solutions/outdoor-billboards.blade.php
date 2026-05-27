@@ -5,117 +5,81 @@
 @section('content')
 
     {{-- HERO SECTION --}}
-    @include(
-        'frontend.layouts.hero',
-        ['solution' => $solution]
-    )
+    @include('frontend.layouts.hero', ['solution' => $solution])
 
     {{-- ABOUT SECTION --}}
-    @include(
-        'frontend.pages.home.about',
-        ['solution' => $solution]
-    )
+    @include('frontend.pages.home.about', ['solution' => $solution])
 
     <!-- =========================================================
-         WHERE IT IS USED
+         WHERE IT IS USED SECTION
     ========================================================= -->
     <section class="meeting-display-section">
 
         <div class="meeting-display-container">
 
-            <!-- TOP -->
+            <!-- TOP SECTION -->
             <div class="meeting-display-grid">
 
-                <!-- LEFT -->
+                <!-- LEFT CONTENT -->
                 <div class="meeting-display-content">
 
-                    <h2>
-                        Where It Is Used
-                    </h2>
+                    <h2>Where It Is Used</h2>
 
                     <ul>
-
                         @forelse($solution->uses as $use)
 
-                            <li>
-                                {{ $use->title }}
-                            </li>
+                            <li>{{ $use->title }}</li>
 
                         @empty
 
-                            <li>
-                                No uses listed.
-                            </li>
+                            <li>No uses listed.</li>
 
                         @endforelse
-
                     </ul>
 
                 </div>
 
-                <!-- RIGHT -->
+                <!-- RIGHT BOXES -->
                 <div class="meeting-display-box-wrapper">
 
-                    @foreach($solution->technicalFeatures->chunk(3) as $row)
+                  <div class="meeting-benefit-image">
 
-                        <div class="meeting-display-row">
+                    <img
+                        src="{{ asset('storage/image/Shinhan.png') }}"
+                        alt="Benefits">
 
-                            @foreach($row as $feature)
-
-                                <div class="meeting-display-box">
-
-                                    <span>
-                                        {{ $feature->feature_number }}
-                                    </span>
-
-                                    <h4>
-                                        {{ $feature->title }}
-                                    </h4>
-
-                                </div>
-
-                            @endforeach
-
-                        </div>
-
-                    @endforeach
+                </div>
 
                 </div>
 
             </div>
 
-            <!-- BOTTOM -->
+            <!-- BENEFITS SECTION -->
             <div class="meeting-benefit-grid">
 
                 <!-- IMAGE -->
                 <div class="meeting-benefit-image">
 
                     <img
-                        src="{{ asset('images/usage.jpg') }}"
+                        src="{{ asset('storage/image/Shinhan.png') }}"
                         alt="Benefits">
 
                 </div>
 
-                <!-- BENEFITS -->
+                <!-- CONTENT -->
                 <div class="meeting-benefit-content">
 
-                    <h2>
-                        Benefits
-                    </h2>
+                    <h2>Benefits</h2>
 
                     <ul>
 
                         @forelse($solution->benefits as $benefit)
 
-                            <li>
-                                {{ $benefit->title }}
-                            </li>
+                            <li>{{ $benefit->title }}</li>
 
                         @empty
 
-                            <li>
-                                No benefits listed.
-                            </li>
+                            <li>No benefits listed.</li>
 
                         @endforelse
 
@@ -128,24 +92,71 @@
         </div>
 
     </section>
+    @include('frontend.pages.solutions.components.why-us', ['whyLed' => $whyLed])
 
-    {{-- WHY LED --}}
-    @include(
-        'frontend.pages.solutions.components.why-led',
-        ['solution' => $solution]
-    )
+    <!-- =========================================================
+         FEATURED PROJECTS SECTION
+    ========================================================= -->
+    <section class="featured-projects">
 
-    {{-- TECHNICAL FEATURES --}}
-    @include(
-        'frontend.pages.solutions.components.technical-features',
-        ['solution' => $solution]
-    )
+        <div class="featured-container">
 
-    {{-- FEATURED PROJECTS --}}
-    @include(
-        'frontend.pages.solutions.components.featured',
-        ['solution' => $solution]
-    )
+            <!-- HEADING -->
+            <div class="featured-heading">
+
+                <h2>Featured Projects</h2>
+
+                <p>
+                    Supply and installation of commercial outdoor LED display
+                    systems for bank branding and advertising visibility.
+                </p>
+
+            </div>
+
+            <!-- PROJECT CARD -->
+            <div class="featured-project-card">
+
+                <!-- IMAGE -->
+                <div class="featured-project-image">
+
+                    <img
+                        src="{{ asset('storage/image/Shinhan.png') }}"
+                        alt="Shinhan Bank">
+
+                </div>
+
+                <!-- CONTENT -->
+                <div class="featured-project-content">
+
+                    <h3>Shinhan Bank</h3>
+
+                    <p>
+                        Outdoor LED Display <br>
+                        Phnom Penh
+                    </p>
+
+                    <a href="#" class="featured-btn">
+                        More Detail
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- BUTTON -->
+            <div class="featured-bottom-btn">
+
+                <a href="#">
+                    View More Projects
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+    
+
 
     {{-- FAQ --}}
     @include(
@@ -161,11 +172,17 @@
 
 @endsection
 
+@push('styles')
 
 <style>
 
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
 .meeting-display-section{
     width:100%;
+    height: 900px;
     background:linear-gradient(90deg,#0a3ca7 0%, #02004d 100%);
     font-family:Arial,sans-serif;
     overflow:hidden;
@@ -179,9 +196,9 @@
     margin:auto;
 }
 
-/* =========================
+/* =========================================================
    TOP SECTION
-========================= */
+========================================================= */
 
 .meeting-display-grid{
     display:grid;
@@ -191,12 +208,12 @@
     padding:80px 0;
 }
 
-/* LEFT */
+/* LEFT CONTENT */
 
 .meeting-display-content h2{
-    font-size:42px;
+    font-size:38px;
     color:#fff;
-    font-weight:600;
+    font-weight:100;
     margin-bottom:25px;
 }
 
@@ -206,63 +223,49 @@
 
 .meeting-display-content ul li{
     color:#fff;
-    font-size:18px;
+    font-size:16px;
     line-height:2;
 }
 
-/* RIGHT */
+/* =========================================================
+   RIGHT BOXES
+========================================================= */
 
 .meeting-display-box-wrapper{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:20px;
+    align-items:center;
 }
 
 .meeting-display-row{
     display:flex;
-    gap:18px;
+    gap:20px;
     justify-content:center;
 }
 
 .meeting-display-box{
-    width:120px;
-    height:120px;
+    width:110px;
+    height:110px;
     background:#88A7D4;
     border-radius:10px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:10px;
 }
 
-.meeting-display-box span{
-    color:#fff;
-    font-size:24px;
-    font-weight:700;
-    margin-bottom:6px;
-}
-
-.meeting-display-box h4{
-    color:#fff;
-    font-size:14px;
-    line-height:1.4;
-    margin:0;
-}
-
-/* =========================
-   BOTTOM SECTION
-========================= */
+/* =========================================================
+   BENEFITS SECTION
+========================================================= */
 
 .meeting-benefit-grid{
     display:grid;
     grid-template-columns:1.1fr 1fr;
     gap:70px;
     align-items:center;
-    background:#000;
+    background:#fff;
     padding:70px 40px;
+    border-radius:16px;
 }
+
+/* IMAGE */
 
 .meeting-benefit-image img{
     width:100%;
@@ -271,11 +274,11 @@
     border-radius:10px;
 }
 
-/* BENEFITS */
+/* CONTENT */
 
 .meeting-benefit-content h2{
-    color:#fff;
-    font-size:42px;
+    color:#111;
+    font-size:38px;
     font-weight:600;
     margin-bottom:25px;
 }
@@ -285,19 +288,181 @@
 }
 
 .meeting-benefit-content ul li{
-    color:#fff;
-    font-size:18px;
+    color:#333;
+    font-size:16px;
     line-height:2;
 }
 
-/* =========================
+/* =========================================================
+   FEATURED PROJECTS SECTION
+========================================================= */
+
+.featured-projects{
+    width:100%;
+    padding:90px 0;
+
+    background:
+    radial-gradient(circle at bottom right,
+    rgba(40,90,255,0.25),
+    transparent 30%),
+    linear-gradient(135deg,#01004b 0%, #000033 100%);
+
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+/* CONTAINER */
+
+.featured-container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.featured-heading{
+    margin-bottom:55px;
+}
+
+.featured-heading h2{
+    color:#fff;
+    font-size:42px;
+    font-weight:100;
+    margin-bottom:16px;
+}
+
+.featured-heading p{
+    color:rgba(255,255,255,0.75);
+    font-size:16px;
+    line-height:1.6;
+    max-width:620px;
+}
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.featured-project-card{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at center right,
+    rgba(0,102,255,0.45),
+    transparent 35%),
+    #031059;
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    margin-bottom:65px;
+}
+
+/* IMAGE */
+
+.featured-project-image{
+    padding:10px;
+}
+
+.featured-project-image img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:12px;
+    display:block;
+}
+
+/* CONTENT */
+
+.featured-project-content{
+    padding:50px 55px;
+}
+
+.featured-project-content h3{
+    color:#fff;
+    font-size:44px;
+    font-weight:400;
+    margin-bottom:22px;
+}
+
+.featured-project-content p{
+    color:rgba(255,255,255,0.8);
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:35px;
+}
+
+/* BUTTON */
+
+.featured-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:140px;
+    height:44px;
+
+    background:linear-gradient(90deg,#1684ff,#1d2cff);
+
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+
+    border-radius:50px;
+
+    transition:0.3s ease;
+}
+
+.featured-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* BOTTOM BUTTON */
+
+.featured-bottom-btn{
+    text-align:center;
+}
+
+.featured-bottom-btn a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:320px;
+    height:60px;
+
+    background:linear-gradient(90deg,#1684ff,#1d2cff);
+
+    color:#fff;
+    text-decoration:none;
+
+    font-size:18px;
+
+    border-radius:50px;
+
+    transition:0.3s ease;
+}
+
+.featured-bottom-btn a:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media(max-width:991px){
 
     .meeting-display-grid,
-    .meeting-benefit-grid{
+    .meeting-benefit-grid,
+    .featured-project-card{
         grid-template-columns:1fr;
         text-align:center;
     }
@@ -310,6 +475,14 @@
 
     .meeting-display-box-wrapper{
         align-items:center;
+    }
+
+    .featured-project-content{
+        padding:40px 30px;
+    }
+
+    .featured-project-content h3{
+        font-size:34px;
     }
 
 }
@@ -327,13 +500,14 @@
     }
 
     .meeting-display-content h2,
-    .meeting-benefit-content h2{
-        font-size:30px;
+    .meeting-benefit-content h2,
+    .featured-heading h2{
+        font-size:28px;
     }
 
     .meeting-display-content ul li,
     .meeting-benefit-content ul li{
-        font-size:15px;
+        font-size:14px;
     }
 
     .meeting-display-row{
@@ -345,18 +519,31 @@
         height:80px;
     }
 
-    .meeting-display-box span{
-        font-size:18px;
+    .meeting-benefit-image img,
+    .featured-project-image img{
+        height:220px;
     }
 
-    .meeting-display-box h4{
-        font-size:11px;
+    .featured-project-content{
+        padding:30px 20px;
     }
 
-    .meeting-benefit-image img{
-        height:180px;
+    .featured-project-content h3{
+        font-size:28px;
+    }
+
+    .featured-project-content p{
+        font-size:15px;
+    }
+
+    .featured-bottom-btn a{
+        min-width:230px;
+        height:52px;
+        font-size:15px;
     }
 
 }
 
 </style>
+
+@endpush

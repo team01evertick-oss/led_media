@@ -13,11 +13,12 @@
     {{-- BENEFIT --}}
     @include('frontend.pages.solutions.components.benefit')
 
-    {{-- WHY US --}}
-    @include('frontend.pages.solutions.components.why-us')
+    {{-- WHY US 
+    
+    --}}
+        @include('frontend.pages.solutions.components.why-us', ['whyLed' => $whyLed])
 
-    {{-- TECHNICAL FEATURES --}}
-    @include('frontend.pages.solutions.components.technical-features')
+
 
     {{-- FEATURED PROJECTS --}}
     @include('frontend.pages.solutions.components.featured')

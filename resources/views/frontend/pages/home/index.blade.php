@@ -21,6 +21,10 @@
 
     {{-- INDUSTRIES --}}
     @include('frontend.pages.home.industries')
+     @include('frontend.pages.home.Service&Maintenance')
+          @include('frontend.pages.home.Insights')
+ @include('frontend.pages.home.BuildProject')
 
+     
 
 @endsection

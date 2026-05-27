@@ -23,25 +23,18 @@
             <!-- RIGHT -->
             <div class="meeting-display-box-wrapper">
 
-                @foreach($solution->technicalFeatures->chunk(3) as $row)
-                    <div class="meeting-display-row">
+                <div class="meeting-display-grid-boxes">
 
-                        @foreach($row as $feature)
-                            <div class="meeting-display-box">
+                    <!-- TOP -->
+                    <div class="meeting-display-box"></div>
+                    <div class="meeting-display-box"></div>
 
-                                <span>
-                                    {{ $feature->feature_number }}
-                                </span>
+                    <!-- BOTTOM -->
+                    <div class="meeting-display-box"></div>
+                    <div class="meeting-display-box"></div>
+                    <div class="meeting-display-box"></div>
 
-                                <h4>
-                                    {{ $feature->title }}
-                                </h4>
-
-                            </div>
-                        @endforeach
-
-                    </div>
-                @endforeach
+                </div>
 
             </div>
 
@@ -73,15 +66,19 @@
     </div>
 
 </section>
+
 <style>
-    .meeting-display-section{
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.meeting-display-section{
     width:100%;
-    background:linear-gradient(90deg,#0a3ca7 0%, #02004d 100%);
+    background:#ffffff;
     font-family:Arial,sans-serif;
     overflow:hidden;
 }
-
-/* CONTAINER */
 
 .meeting-display-container{
     width:90%;
@@ -89,9 +86,9 @@
     margin:auto;
 }
 
-/* =========================
+/* =========================================================
    TOP SECTION
-========================= */
+========================================================= */
 
 .meeting-display-grid{
     display:grid;
@@ -101,56 +98,91 @@
     padding:80px 0;
 }
 
-/* LEFT */
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
 
 .meeting-display-content h2{
     font-size:42px;
-    color:#fff;
+    color:#111;
     font-weight:600;
     margin-bottom:25px;
 }
 
 .meeting-display-content ul{
-    padding-left:18px;
+    padding-left:20px;
 }
 
 .meeting-display-content ul li{
-    color:#fff;
+    color:#333;
     font-size:18px;
     line-height:2;
 }
 
-/* RIGHT */
+/* =========================================================
+   RIGHT BOXES
+========================================================= */
 
 .meeting-display-box-wrapper{
     display:flex;
-    flex-direction:column;
-    gap:18px;
+    justify-content:center;
+    align-items:center;
 }
 
-.meeting-display-row{
-    display:flex;
+/* CUSTOM 5 CARD LAYOUT */
+.meeting-display-grid-boxes{
+    display:grid;
+    grid-template-columns:repeat(6, 60px);
     gap:18px;
     justify-content:center;
 }
 
+/* TOP ROW */
+.meeting-display-box:nth-child(1){
+    grid-column:2 / span 2;
+}
+
+.meeting-display-box:nth-child(2){
+    grid-column:4 / span 2;
+}
+
+/* BOTTOM ROW */
+.meeting-display-box:nth-child(3){
+    grid-column:1 / span 2;
+}
+
+.meeting-display-box:nth-child(4){
+    grid-column:3 / span 2;
+}
+
+.meeting-display-box:nth-child(5){
+    grid-column:5 / span 2;
+}
+
+/* BOX STYLE */
+
 .meeting-display-box{
     width:120px;
     height:120px;
-    background:#88A7D4;
-    border-radius:10px;
+    background:#dbeafe;
+    border-radius:12px;
+    transition:0.3s ease;
+    box-shadow:0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* =========================
-   BOTTOM SECTION
-========================= */
+.meeting-display-box:hover{
+    transform:translateY(-5px);
+}
+
+/* =========================================================
+   BENEFIT SECTION
+========================================================= */
 
 .meeting-benefit-grid{
     display:grid;
     grid-template-columns:1.1fr 1fr;
     gap:70px;
     align-items:center;
-    background:#000;
     padding:70px 40px;
 }
 
@@ -159,32 +191,32 @@
 .meeting-benefit-image{
     width:100%;
     height:260px;
-    background:#88A7D4;
-    border-radius:10px;
+    background:#dbeafe;
+    border-radius:12px;
 }
 
-/* BENEFITS */
+/* CONTENT */
 
 .meeting-benefit-content h2{
-    color:#fff;
+    color:#111;
     font-size:42px;
     font-weight:600;
     margin-bottom:25px;
 }
 
 .meeting-benefit-content ul{
-    padding-left:18px;
+    padding-left:20px;
 }
 
 .meeting-benefit-content ul li{
-    color:#fff;
+    color:#333;
     font-size:18px;
     line-height:2;
 }
 
-/* =========================
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media(max-width:991px){
 
@@ -200,8 +232,14 @@
         text-align:left;
     }
 
-    .meeting-display-box-wrapper{
-        align-items:center;
+    .meeting-display-grid-boxes{
+        grid-template-columns:repeat(6, 45px);
+        gap:14px;
+    }
+
+    .meeting-display-box{
+        width:90px;
+        height:90px;
     }
 
     .meeting-benefit-image{
@@ -232,8 +270,19 @@
         font-size:15px;
     }
 
-    .meeting-display-row{
-        gap:10px;
+    /* MOBILE GRID */
+    .meeting-display-grid-boxes{
+        grid-template-columns:repeat(2, 80px);
+        gap:12px;
+    }
+
+    /* RESET CUSTOM POSITION */
+    .meeting-display-box:nth-child(1),
+    .meeting-display-box:nth-child(2),
+    .meeting-display-box:nth-child(3),
+    .meeting-display-box:nth-child(4),
+    .meeting-display-box:nth-child(5){
+        grid-column:auto;
     }
 
     .meeting-display-box{
@@ -246,4 +295,5 @@
     }
 
 }
+
 </style>

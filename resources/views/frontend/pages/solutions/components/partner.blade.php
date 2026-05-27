@@ -68,8 +68,10 @@
     </div>
 
 </section>
+
 <style>
-    /* =========================================================
+
+/* =========================================================
    PARTNER SECTION
 ========================================================= */
 
@@ -131,7 +133,7 @@
 /* CONTENT */
 
 .partner-content{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
     text-align:center;
 }
@@ -140,8 +142,8 @@
 
 .partner-content h2{
     color:#fff;
-    font-size:72px;
-    font-weight:300;
+    font-size:40px;
+    font-weight:100;
     line-height:1.1;
     margin-bottom:40px;
     letter-spacing:-2px;
@@ -173,11 +175,13 @@
     transition:all 0.3s ease;
 }
 
-/* PRIMARY */
+/* PRIMARY BUTTON */
 
 .primary-btn{
     background:linear-gradient(
-        90deg,
+        180deg,
+        #1760ff 0%,
+        #0a84ff 100%,
         #1760ff 0%,
         #0a84ff 100%
     );
@@ -190,7 +194,7 @@
     transform:translateY(-3px);
 }
 
-/* SECONDARY */
+/* SECONDARY BUTTON */
 
 .secondary-btn{
     background:rgba(0,0,0,0.45);
@@ -216,7 +220,7 @@
     }
 
     .partner-content h2{
-        font-size:50px;
+        font-size:70px;
         line-height:1.2;
         letter-spacing:-1px;
     }
@@ -235,7 +239,7 @@
     }
 
     .partner-content h2{
-        font-size:34px;
+        font-size:40px;
         line-height:1.3;
         margin-bottom:28px;
         letter-spacing:0;
@@ -254,4 +258,5 @@
     }
 
 }
+
 </style>

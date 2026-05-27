@@ -35,11 +35,13 @@ HEADER
             {{-- PILL --}}
             <div class="nav-pill">
 
-
-                {{-- Hamburger (mobile) --}}
-                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                {{-- Mobile top row: logo + hamburger --}}
+                <div class="mobile-toprow">
+                    <span class="nav-brand">LED MEDIA</span>
+                    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
 
                 {{-- Nav links --}}
                 <ul class="nav-links" id="navLinks">
@@ -52,11 +54,10 @@ HEADER
                            class="nav-link-item {{ request()->routeIs('solutions.*') ? 'is-active' : '' }}">
                             Solutions <i class="fa-solid fa-chevron-down chev"></i>
                         </a>
-                        {{-- Mobile inline --}}
                         <ul class="mobile-sub">
                             <li><a href="{{ route('solutions.outdoor-billboards') }}" class="{{ request()->routeIs('solutions.outdoor-billboards') ? 'is-active' : '' }}">Outdoor LED Billboards</a></li>
                             <li><a href="{{ route('solutions.indoor-commercial') }}" class="{{ request()->routeIs('solutions.indoor-commercial') ? 'is-active' : '' }}">Indoor Commercial LED Displays</a></li>
-                            <li><a href="{{ route('solutions.fine-pixel') }}" class="{{ request()->routeIs('solutions.fine-pixel') ? 'is-active' : '' }}">Fine Pixel</a></li>
+                            <li><a href="{{ route('solutions.fine-pixel') }}" class="{{ request()->routeIs('solutions.fine-pixel') ? 'is-active' : '' }}">Fine Pixel / Meeting Room Displays</a></li>
                             <li><a href="{{ route('solutions.meeting-room') }}" class="{{ request()->routeIs('solutions.meeting-room') ? 'is-active' : '' }}">Meeting Room Displays</a></li>
                             <li><a href="{{ route('solutions.retail') }}" class="{{ request()->routeIs('solutions.retail') ? 'is-active' : '' }}">Retail & Showroom LED Solutions</a></li>
                             <li><a href="{{ route('solutions.control-systems') }}" class="{{ request()->routeIs('solutions.control-systems') ? 'is-active' : '' }}">Control Systems & Integration</a></li>
@@ -64,26 +65,27 @@ HEADER
                         </ul>
                     </li>
 
-                    <li><a href="{{ route('projects.index') }}"
-                           class="nav-link-item {{ request()->routeIs('projects.*') ? 'is-active' : '' }}">Projects</a></li>
+                
 
                     <li class="has-dropdown" data-panel="panel-industries">
                         <a href="javascript:void(0)"
                            class="nav-link-item {{ request()->routeIs('industries.*') ? 'is-active' : '' }}">
                             Industries <i class="fa-solid fa-chevron-down chev"></i>
                         </a>
-                        {{-- Mobile inline --}}
                         <ul class="mobile-sub">
-                            <li><a href="{{ route('industries.outdoorAd') }}">Outdoor Advertising Industry</a></li>
-                            <li><a href="{{ route('industries.retail') }}">Retail & Showroom Industry</a></li>
-                            <li><a href="{{ route('industries.corporate') }}">Corporate Offices Industry</a></li>
-                            <li><a href="{{ route('industries.developers') }}">Developers Industry</a></li>
-                            <li><a href="{{ route('industries.automotive') }}">Automotive Industry</a></li>
-                            <li><a href="{{ route('industries.hospitality') }}">Hospitality Industry</a></li>
-                            <li><a href="{{ route('industries.banks') }}">Banks Industry</a></li>
-                            <li><a href="{{ route('industries.government') }}">Government & Public Sector</a></li>
+                            <li><a href="{{ route('industries.outdoorAd') }}" class="{{ request()->routeIs('industries.outdoorAd') ? 'is-active' : '' }}">Outdoor Advertising Industry</a></li>
+                            <li><a href="{{ route('industries.retail') }}" class="{{ request()->routeIs('industries.retail') ? 'is-active' : '' }}">Retail & Showroom Industry</a></li>
+                            <li><a href="{{ route('industries.corporate') }}" class="{{ request()->routeIs('industries.corporate') ? 'is-active' : '' }}">Corporate Offices Industry</a></li>
+                            <li><a href="{{ route('industries.developers') }}" class="{{ request()->routeIs('industries.developers') ? 'is-active' : '' }}">Developers Industry</a></li>
+                            <li><a href="{{ route('industries.automotive') }}" class="{{ request()->routeIs('industries.automotive') ? 'is-active' : '' }}">Automotive Industry</a></li>
+                            <li><a href="{{ route('industries.hospitality') }}" class="{{ request()->routeIs('industries.hospitality') ? 'is-active' : '' }}">Hospitality Industry</a></li>
+                            <li><a href="{{ route('industries.banks') }}" class="{{ request()->routeIs('industries.banks') ? 'is-active' : '' }}">Banks Industry</a></li>
+                            <li><a href="{{ route('industries.government') }}" class="{{ request()->routeIs('industries.government') ? 'is-active' : '' }}">Government & Public Sector</a></li>
                         </ul>
                     </li>
+                    
+                    <li><a href="{{ route('projects.index') }}"
+                           class="nav-link-item {{ request()->routeIs('projects.*') ? 'is-active' : '' }}">Projects</a></li>
 
                     <li><a href="{{ route('services.index') }}"
                            class="nav-link-item {{ request()->routeIs('services.index') ? 'is-active' : '' }}">Service & Maintenance</a></li>
@@ -100,30 +102,25 @@ HEADER
                 </ul>
             </div>{{-- /.nav-pill --}}
 
-            {{-- ═══════════════════════════════════════════
-                 DESKTOP DROPDOWN PANELS
-                 Outside the pill → no stacking-context clash
-                 Positioned relative to .navbar-inner
-            ═══════════════════════════════════════════ --}}
+            {{-- DESKTOP DROPDOWN PANELS --}}
             <div class="dd-panel" id="panel-solutions">
                 <a href="{{ route('solutions.outdoor-billboards') }}" class="{{ request()->routeIs('solutions.outdoor-billboards') ? 'is-active' : '' }}">Outdoor LED Billboards</a>
                 <a href="{{ route('solutions.indoor-commercial') }}" class="{{ request()->routeIs('solutions.indoor-commercial') ? 'is-active' : '' }}">Indoor Commercial LED Displays</a>
                 <a href="{{ route('solutions.fine-pixel') }}" class="{{ request()->routeIs('solutions.fine-pixel') ? 'is-active' : '' }}">Fine Pixel</a>
-                <a href="{{ route('solutions.meeting-room') }}" class="{{ request()->routeIs('solutions.meeting-room') ? 'is-active' : '' }}">Meeting Room Displays</a>
-                <a href="{{ route('solutions.retail') }}" class="{{ request()->routeIs('solutions.retail') ? 'is-active' : '' }}">Retail & Showroom LED Solutions</a>
+            <a href="{{ route('solutions.retail') }}" class="{{ request()->routeIs('solutions.retail') ? 'is-active' : '' }}">Retail & Showroom LED Solutions</a>
                 <a href="{{ route('solutions.control-systems') }}" class="{{ request()->routeIs('solutions.control-systems') ? 'is-active' : '' }}">Control Systems & Integration</a>
                 <a href="{{ route('solutions.installation') }}" class="{{ request()->routeIs('solutions.installation') ? 'is-active' : '' }}">Installation & Structural Works</a>
             </div>
 
             <div class="dd-panel" id="panel-industries">
-                <a href="{{ route('industries.outdoorAd') }}">Outdoor Advertising Industry</a>
-                <a href="{{ route('industries.retail') }}">Retail & Showroom Industry</a>
-                <a href="{{ route('industries.corporate') }}">Corporate Offices Industry</a>
-                <a href="{{ route('industries.developers') }}">Developers Industry</a>
-                <a href="{{ route('industries.automotive') }}">Automotive Industry</a>
-                <a href="{{ route('industries.hospitality') }}">Hospitality Industry</a>
-                <a href="{{ route('industries.banks') }}">Banks Industry</a>
-                <a href="{{ route('industries.government') }}">Government & Public Sector</a>
+                <a href="{{ route('industries.outdoorAd') }}" class="{{ request()->routeIs('industries.outdoorAd') ? 'is-active' : '' }}">Outdoor Advertising Industry</a>
+                <a href="{{ route('industries.retail') }}" class="{{ request()->routeIs('industries.retail') ? 'is-active' : '' }}">Retail & Showroom Industry</a>
+                <a href="{{ route('industries.corporate') }}" class="{{ request()->routeIs('industries.corporate') ? 'is-active' : '' }}">Corporate Offices Industry</a>
+                <a href="{{ route('industries.developers') }}" class="{{ request()->routeIs('industries.developers') ? 'is-active' : '' }}">Developers Industry</a>
+                <a href="{{ route('industries.automotive') }}" class="{{ request()->routeIs('industries.automotive') ? 'is-active' : '' }}">Automotive Industry</a>
+                <a href="{{ route('industries.hospitality') }}" class="{{ request()->routeIs('industries.hospitality') ? 'is-active' : '' }}">Hospitality Industry</a>
+                <a href="{{ route('industries.banks') }}" class="{{ request()->routeIs('industries.banks') ? 'is-active' : '' }}">Banks Industry</a>
+                <a href="{{ route('industries.government') }}" class="{{ request()->routeIs('industries.government') ? 'is-active' : '' }}">Government & Public Sector</a>
             </div>
 
         </div>{{-- /.navbar-inner --}}
@@ -150,7 +147,7 @@ CSS
    TOP BAR
 ══════════════════════ */
 .top-bar {
-    background: rgba(4, 9, 22, 0.97);
+   
     padding: 9px 0;
 }
 .topbar-wrapper {
@@ -183,12 +180,10 @@ CSS
 
 /* ══════════════════════
    NAVBAR SHELL
-   .navbar-inner is the
-   positioning parent for
-   the dd-panels
 ══════════════════════ */
 .main-navbar {
     width: 100%;
+   
     padding: 10px 0;
     display: flex;
     justify-content: center;
@@ -196,7 +191,7 @@ CSS
 .navbar-inner {
     width: 90%;
     max-width: 1900px;
-    position: relative;   /* ← anchor for .dd-panel */
+    position: relative;
 }
 
 /* ── Pill ── */
@@ -211,28 +206,45 @@ CSS
     align-items: center;
     gap: 6px;
     position: relative;
-    z-index: 2;           /* above dd-panels */
+    z-index: 2;
     box-shadow:
         0 0 0 1px rgba(255,255,255,0.03),
         0 8px 32px rgba(0,0,0,0.45),
         inset 0 0 18px rgba(255,255,255,0.02);
 }
 
+/* Mobile top row hidden on desktop */
+.mobile-toprow {
+    display: none;
+}
+
 /* Hamburger */
 .hamburger-btn {
-    display: none;
     background: none; border: none;
     color: #fff; font-size: 20px; cursor: pointer;
     padding: 6px 10px; border-radius: 8px;
-    margin-left: auto; flex-shrink: 0;
     transition: background .2s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
 }
 .hamburger-btn:hover { background: rgba(255,255,255,0.08); }
 
+/* Brand */
+.nav-brand {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    flex: 1;
+}
+
 /* ── Nav links list ── */
 .nav-links {
-    display: flex !important;
-    flex-direction: row !important;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     flex: 1;
@@ -264,18 +276,15 @@ CSS
 .chev { font-size: 10px; transition: transform .3s; }
 .has-dropdown.dd-open > a .chev { transform: rotate(180deg); }
 
-/* Mobile sub-menu (hidden on desktop) */
+/* Mobile sub-menu hidden on desktop */
 .mobile-sub { display: none; }
 
 /* ══════════════════════
    DESKTOP DROPDOWN PANELS
-   Anchored to .navbar-inner
-   Sit below the pill, above
-   page content
 ══════════════════════ */
 .dd-panel {
     position: absolute;
-    top: calc(100% + 10px);  /* 2px gap below pill bottom */
+    top: calc(100% + 10px);
     left: 20px;
     width: 95%;
     display: flex;
@@ -289,10 +298,9 @@ CSS
     padding: 10px 2px;
     background: none;
     border: 1px solid rgba(255,255,255,0.13);
-    border-radius: 22px 22px 22px 22px;
-    z-index: 1;             /* below pill (z-index:2) so pill overlaps top edge */
+    border-radius: 22px;
+    z-index: 1;
 
-    /* Hidden state */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -329,65 +337,108 @@ CSS
 ══════════════════════ */
 @media (max-width: 1199px) {
 
-    .main-navbar { padding: 8px 0 10px; }
-
-    .nav-pill {
-        flex-wrap: wrap;
-        border-radius: 20px;
-        padding: 10px 14px;
+    /* Navbar shell — side padding so pill doesn't touch screen edges */
+    .main-navbar {
+        padding: 8px 12px;
     }
-    .nav-logo { flex: 1; }
-    .hamburger-btn { display: flex !important; }
 
-    /* Hide desktop list, show on .open */
+    /* Full width inner */
+    .navbar-inner {
+        width: 100%;
+    }
+
+    /* Pill becomes a vertical block */
+    .nav-pill {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 18px;
+        padding: 0;
+        gap: 0;
+        overflow: hidden; /* clips sub-menus neatly */
+    }
+
+    /* Show mobile top row (logo + hamburger) */
+    .mobile-toprow {
+        display: flex;
+        align-items: center;
+        padding: 10px 14px;
+        gap: 8px;
+        min-height: 52px;
+    }
+
+    /* Hide nav list by default on mobile */
     .nav-links {
-        display: none !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        justify-content: flex-start !important;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
         flex: none;
         width: 100%;
         gap: 2px;
-        padding: 10px 0 4px;
+        padding: 4px 10px 10px;
+        border-top: 1px solid rgba(255,255,255,0.08);
     }
-    .nav-links.open { display: flex !important; }
+    .nav-links.open { display: flex; }
+
+    .nav-links > li { width: 100%; }
 
     .nav-link-item {
         width: 100%;
         justify-content: space-between;
-        height: auto; padding: 12px 14px;
+        height: auto;
+        padding: 12px 14px;
         border-radius: 12px;
+        font-size: 15px;
+        white-space: normal; /* allow wrapping on very small screens */
     }
 
-    /* Desktop panels hidden on mobile */
-    .dd-panel { display: none !important; }
+    /* Desktop panels fully disabled on mobile */
+    .dd-panel {
+        display: none !important;
+        pointer-events: none !important;
+    }
 
-    /* Mobile sub-menu */
+    /* Mobile sub-menu — collapsed by default */
     .mobile-sub {
         list-style: none;
-        margin: 0; padding: 4px 0 4px 12px;
-        display: none;
+        margin: 0 0 4px 0;
+        padding: 0;
+        display: none; /* toggled to flex via .open class */
         flex-direction: column;
-        gap: 2px;
+        gap: 0;
+        border-left: 2px solid rgba(93,141,255,0.35);
+        margin-left: 14px;
+        padding-left: 4px;
     }
-    .mobile-sub.open { display: flex; }
+    .mobile-sub.open {
+        display: flex;
+    }
     .mobile-sub li { list-style: none; }
     .mobile-sub a {
         display: block;
-        padding: 9px 14px;
-        color: rgba(255,255,255,0.82);
+        padding: 10px 14px;
+        color: rgba(255,255,255,0.75);
         text-decoration: none;
-        font-size: 13px; font-weight: 500;
+        font-size: 13.5px;
+        font-weight: 400;
         border-radius: 10px;
-        transition: background .2s;
+        transition: background .2s, color .2s;
     }
     .mobile-sub a:hover,
-    .mobile-sub a.is-active { background: rgba(255,255,255,0.10); color: #fff; }
+    .mobile-sub a.is-active {
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+    }
 }
 
+/* ══════════════════════
+   SMALL MOBILE ≤ 768px
+══════════════════════ */
 @media (max-width: 768px) {
-    .topbar-wrapper { flex-direction: column; text-align: center; }
-    .left-info { justify-content: center; gap: 8px; }
+    .top-bar { padding: 7px 0; }
+    .topbar-wrapper { flex-direction: column; text-align: center; gap: 6px; }
+    .left-info { justify-content: center; gap: 10px; }
+    .left-info a { font-size: 12px; }
     .social-icons { justify-content: center; }
 }
 </style>
@@ -398,30 +449,52 @@ CSS
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    const MOBILE_BP = 1199;
-    const isMobile  = () => window.innerWidth <= MOBILE_BP;
+    const MOBILE_BP    = 1199;
+    const isMobile     = () => window.innerWidth <= MOBILE_BP;
 
-    /* ─────────────────────────────────
-       Collect dropdown triggers
-    ───────────────────────────────── */
     const dropdownItems = document.querySelectorAll('.has-dropdown');
-    let hideTimers = {};
+    const btn           = document.getElementById('hamburgerBtn');
+    const navList       = document.getElementById('navLinks');
+    let   hideTimers    = {};
 
+    /* ─────────────────────────────────────
+       Helper: close all mobile sub-menus
+    ───────────────────────────────────── */
+    function closeAllMobileSubs() {
+        dropdownItems.forEach(item => {
+            item.classList.remove('dd-open');
+            const sub = item.querySelector('.mobile-sub');
+            if (sub) sub.classList.remove('open');
+        });
+    }
+
+    /* ─────────────────────────────────────
+       Helper: close all desktop panels
+    ───────────────────────────────────── */
+    function closeAllDesktopPanels() {
+        dropdownItems.forEach(item => {
+            item.classList.remove('dd-open');
+            const p = document.getElementById(item.dataset.panel);
+            if (p) p.classList.remove('dd-visible');
+        });
+    }
+
+    /* ─────────────────────────────────────
+       Desktop: hover behaviour
+    ───────────────────────────────────── */
     dropdownItems.forEach(item => {
         const panelId = item.dataset.panel;
         const panel   = panelId ? document.getElementById(panelId) : null;
 
-        /* ── Desktop: hover ── */
         item.addEventListener('mouseenter', () => {
             if (isMobile() || !panel) return;
             clearTimeout(hideTimers[panelId]);
-            // Close others
+            // Close other panels first
             dropdownItems.forEach(other => {
-                const otherId = other.dataset.panel;
-                if (otherId !== panelId) {
-                    const otherPanel = document.getElementById(otherId);
-                    if (otherPanel) otherPanel.classList.remove('dd-visible');
+                if (other !== item) {
                     other.classList.remove('dd-open');
+                    const op = document.getElementById(other.dataset.panel);
+                    if (op) op.classList.remove('dd-visible');
                 }
             });
             item.classList.add('dd-open');
@@ -438,9 +511,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (panel) {
             panel.addEventListener('mouseenter', () => {
+                if (isMobile()) return;
                 clearTimeout(hideTimers[panelId]);
             });
             panel.addEventListener('mouseleave', () => {
+                if (isMobile()) return;
                 hideTimers[panelId] = setTimeout(() => {
                     item.classList.remove('dd-open');
                     panel.classList.remove('dd-visible');
@@ -448,62 +523,82 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        /* ── Mobile: click ── */
+        /* ─────────────────────────────────────
+           Mobile: click to toggle sub-menu
+        ───────────────────────────────────── */
         const link = item.querySelector('.nav-link-item');
         const sub  = item.querySelector('.mobile-sub');
+
         if (link && sub) {
             link.addEventListener('click', (e) => {
                 if (!isMobile()) return;
                 e.preventDefault();
-                // Close others
+                const isOpen = sub.classList.contains('open');
+                // Close all other subs first
                 dropdownItems.forEach(other => {
                     if (other !== item) {
-                        const otherSub = other.querySelector('.mobile-sub');
-                        if (otherSub) otherSub.classList.remove('open');
                         other.classList.remove('dd-open');
+                        const os = other.querySelector('.mobile-sub');
+                        if (os) os.classList.remove('open');
                     }
                 });
-                sub.classList.toggle('open');
-                item.classList.toggle('dd-open');
+                // Toggle this one
+                sub.classList.toggle('open', !isOpen);
+                item.classList.toggle('dd-open', !isOpen);
             });
         }
     });
 
-    /* Close desktop dropdowns on outside click */
-    document.addEventListener('click', (e) => {
-        if (isMobile()) return;
-        if (!document.querySelector('.site-header').contains(e.target)) {
-            dropdownItems.forEach(item => {
-                item.classList.remove('dd-open');
-                const p = document.getElementById(item.dataset.panel);
-                if (p) p.classList.remove('dd-visible');
-            });
-        }
-    });
-
-    /* ─────────────────────────────────
-       Hamburger
-    ───────────────────────────────── */
-    const btn     = document.getElementById('hamburgerBtn');
-    const navList = document.getElementById('navLinks');
-
+    /* ─────────────────────────────────────
+       Hamburger toggle
+    ───────────────────────────────────── */
     if (btn && navList) {
         btn.addEventListener('click', () => {
-            navList.classList.toggle('open');
-            const open = navList.classList.contains('open');
-            btn.innerHTML = open
-                ? '<i class="fa-solid fa-xmark"></i>'
-                : '<i class="fa-solid fa-bars"></i>';
+            const isOpen = navList.classList.toggle('open');
+            btn.querySelector('i').className = isOpen
+                ? 'fa-solid fa-xmark'
+                : 'fa-solid fa-bars';
+            // Close all sub-menus when collapsing the nav
+            if (!isOpen) {
+                closeAllMobileSubs();
+            }
         });
     }
 
-    /* Close mobile nav on outside click */
+    /* ─────────────────────────────────────
+       Close on outside click
+    ───────────────────────────────────── */
     document.addEventListener('click', (e) => {
-        if (!isMobile()) return;
-        if (!document.querySelector('.site-header').contains(e.target)) {
-            navList && navList.classList.remove('open');
-            btn && (btn.innerHTML = '<i class="fa-solid fa-bars"></i>');
+        const header = document.querySelector('.site-header');
+        if (header && header.contains(e.target)) return;
+
+        if (isMobile()) {
+            // Close mobile nav
+            if (navList) navList.classList.remove('open');
+            if (btn) btn.querySelector('i').className = 'fa-solid fa-bars';
+            closeAllMobileSubs();
+        } else {
+            closeAllDesktopPanels();
         }
+    });
+
+    /* ─────────────────────────────────────
+       Reset on resize (mobile ↔ desktop)
+    ───────────────────────────────────── */
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (!isMobile()) {
+                // Switching to desktop — reset mobile state
+                if (navList) navList.classList.remove('open');
+                if (btn) btn.querySelector('i').className = 'fa-solid fa-bars';
+                closeAllMobileSubs();
+            } else {
+                // Switching to mobile — reset desktop panel state
+                closeAllDesktopPanels();
+            }
+        }, 100);
     });
 
 });

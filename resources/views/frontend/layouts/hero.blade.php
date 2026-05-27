@@ -371,8 +371,8 @@ $overlayImage = asset('storage/image/home_page_bg2.png');
 
     color: #ffffff;
 
-    font-size: 72px;
-    font-weight: 700;
+    font-size: 42px;
+    font-weight: 100;
 
     line-height: 1.05;
 

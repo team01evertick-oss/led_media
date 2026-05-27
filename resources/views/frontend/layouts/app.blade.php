@@ -6,6 +6,11 @@
     {{-- META --}}
     @include('frontend.layouts.meta')
 
+    {{-- TITLE --}}
+    <title>
+        @yield('title', 'LED MEDIA')
+    </title>
+
     {{-- PAGE STYLES --}}
     @stack('styles')
 
@@ -15,9 +20,6 @@
 
     {{-- NAVBAR --}}
     @include('frontend.layouts.navbar')
-
- 
-   
 
     {{-- MAIN CONTENT --}}
     <main>
